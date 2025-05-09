@@ -1,0 +1,408 @@
+﻿
+/* font */
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Thin.woff2) format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-ExtraLight.woff2) format('woff2');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Light.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Regular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Medium.woff2) format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Semibold.woff2) format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Bold.woff2) format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-ExtraBold.woff2) format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: notosans;
+    src: url(font/NotoSansKR-Black.woff2) format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
+* {
+    font-family: notosans;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    /* smooth 처리 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+
+html,
+body {
+    font-size: 20px;
+    /* color: #383839; */
+    overflow: hidden;
+    touch-action: none;
+    /*    background-color: transparent;*/
+    background: #ffffff;
+    /*    cursor: none;*/
+    /*    touch-action: none;*/
+    /*    overflow: hidden;*/
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+textarea,
+input,
+select,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary,
+audio,
+canvas,
+video {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
+    font-size: 100%;
+    font-weight: 600;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+    width: 100%;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+img,
+fieldset {
+    border: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+legend {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+object {
+    outline: none;
+}
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: inherit;
+    font-size: 1em;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+q {
+    quotes: '\201C''\201D''\2018''\2019';
+}
+
+small {
+    font-size: 80%;
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+figure {
+    margin: 0;
+}
+
+fieldset {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+legend {
+    border: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+button,
+input[type='text'],
+input[type='password'],
+select,
+textarea {
+    border-radius: 0;
+    vertical-align: middle;
+}
+
+textarea {
+    border: 0 none;
+    resize: none;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #aeaeae !important;
+    font-weight: 400;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #aeaeae !important;
+    font-weight: 400;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #aeaeae !important;
+    font-weight: 400;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    /*    color: #aeaeae !important;*/
+    font-weight: 400;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #333;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+
+/* 스크롤바 설정*/
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 16px;
+}
+
+/* 스크롤바 막대 설정*/
+::-webkit-scrollbar-thumb {
+    background-color: #6698cb;
+    border-radius: 16px;
+    cursor: default;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6698cb;
+    cursor: default;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: lightgray;
+    cursor: default;
+}
+
+::-webkit-scrollbar-track:hover {
+    background-color: lightgray;
+    cursor: default;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+    cursor: default;
+}
+
+.zdebug_img {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1200px;
+}
+
+.zdebug_img img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}

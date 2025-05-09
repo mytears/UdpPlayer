@@ -1,0 +1,25 @@
+﻿[2025-05-09 16:57:22.042] [------------------------------------------]
+[2025-05-09 16:57:22.046] [UdpPlayer] Start
+[2025-05-09 16:57:22.057] [Setting File] Readed
+[2025-05-09 16:57:22.065] [Config File] Readed
+[2025-05-09 16:57:22.065] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:57:22.078] [WebServer] [Start]
+[2025-05-09 16:57:22.399] [Webview] Add to Control Complete
+[2025-05-09 16:57:22.411] [Webview] WebView2 초기화 실패 : DLL 'WebView2Loader.dll'을(를) 로드할 수 없습니다. 지정된 모듈을 찾을 수 없습니다. (예외가 발생한 HRESULT: 0x8007007E)
+[2025-05-09 16:57:22.541] [Exception] <MoveNext> System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: UdpPlayer.Form1.<InitializeWebView>d__51.MoveNext()
+[2025-05-09 16:57:22.543] [Display Scale] 1.75
+[2025-05-09 16:57:35.504] [------------------------------------------]
+[2025-05-09 16:57:35.508] [UdpPlayer] Start
+[2025-05-09 16:57:35.515] [Setting File] Readed
+[2025-05-09 16:57:35.518] [Config File] Readed
+[2025-05-09 16:57:35.518] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:57:35.531] [WebServer] [Start]
+[2025-05-09 16:57:35.755] [Webview] Add to Control Complete
+[2025-05-09 16:57:35.772] [Display Scale] 1.75
+[2025-05-09 16:57:36.011] [Webview] WebView2 초기화 완료
+[2025-05-09 16:57:36.125] [Webview] load to http://localhost:8088
+[2025-05-09 16:57:36.632] [Webview] Add Option Complete
+[2025-05-09 16:57:36.633] [WebView] Clear Cache
+[2025-05-09 16:57:36.750] [Webview] set zoom 0.285714285714286
+[2025-05-09 16:58:37.829] [WebToApp] STATUS, STATUS

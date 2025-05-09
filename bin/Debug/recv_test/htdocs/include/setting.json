@@ -1,0 +1,7 @@
+﻿{
+    "setting": {
+        "content_url": "data/kiosk_contents.json",
+        "root_url":"",
+		"notice_mode":""
+    }
+}

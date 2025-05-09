@@ -1,0 +1,128 @@
+﻿[2025-05-09 13:47:04.750] [------------------------------------------]
+[2025-05-09 13:47:04.753] [UdpPlayer] Start
+[2025-05-09 13:47:04.761] [Config File] Readed
+[2025-05-09 13:47:04.762] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 13:47:04.766] [WebServer] [Start]
+[2025-05-09 13:47:04.843] [Webview] Add to Control Complete
+[2025-05-09 13:47:04.884] [Display Scale] 1.75
+[2025-05-09 13:47:05.084] [Webview] WebView2 초기화 완료
+[2025-05-09 13:47:05.200] [Webview] load to http://localhost:8088
+[2025-05-09 13:47:05.711] [Webview] Add Option Complete
+[2025-05-09 13:47:05.711] [WebView] Clear Cache
+[2025-05-09 13:47:07.622] [Webview] set zoom 0.571428571428571
+[2025-05-09 13:47:10.974] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:15:54.791] [------------------------------------------]
+[2025-05-09 16:15:54.795] [UdpPlayer] Start
+[2025-05-09 16:15:54.806] [Config File] Readed
+[2025-05-09 16:15:54.806] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:15:54.811] [WebServer] [Start]
+[2025-05-09 16:15:55.189] [Webview] Add to Control Complete
+[2025-05-09 16:15:55.234] [Display Scale] 1.75
+[2025-05-09 16:15:55.431] [Webview] WebView2 초기화 완료
+[2025-05-09 16:15:55.538] [Webview] load to http://localhost:8088
+[2025-05-09 16:15:56.046] [Webview] Add Option Complete
+[2025-05-09 16:15:56.047] [WebView] Clear Cache
+[2025-05-09 16:15:57.980] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:16:01.327] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:16:08.698] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:19:28.364] [------------------------------------------]
+[2025-05-09 16:19:28.369] [UdpPlayer] Start
+[2025-05-09 16:19:28.379] [Setting File] Readed
+[2025-05-09 16:19:28.380] [Config File] Readed
+[2025-05-09 16:19:28.381] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:19:28.386] [WebServer] [Start]
+[2025-05-09 16:19:28.478] [Webview] Add to Control Complete
+[2025-05-09 16:19:28.529] [Display Scale] 1.75
+[2025-05-09 16:19:28.877] [Webview] WebView2 초기화 완료
+[2025-05-09 16:19:28.994] [Webview] load to http://localhost:8088
+[2025-05-09 16:19:29.502] [Webview] Add Option Complete
+[2025-05-09 16:19:29.502] [WebView] Clear Cache
+[2025-05-09 16:19:29.553] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:19:35.097] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:42:10.760] [------------------------------------------]
+[2025-05-09 16:42:10.765] [UdpPlayer] Start
+[2025-05-09 16:42:10.778] [Setting File] Readed
+[2025-05-09 16:42:10.782] [Config File] Readed
+[2025-05-09 16:42:10.783] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:42:10.800] [WebServer] [Start]
+[2025-05-09 16:42:10.889] [Webview] Add to Control Complete
+[2025-05-09 16:42:10.926] [Display Scale] 1.75
+[2025-05-09 16:42:11.130] [Webview] WebView2 초기화 완료
+[2025-05-09 16:42:11.247] [Webview] load to http://localhost:8088
+[2025-05-09 16:42:11.754] [Webview] Add Option Complete
+[2025-05-09 16:42:11.756] [WebView] Clear Cache
+[2025-05-09 16:42:11.820] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:42:20.894] [------------------------------------------]
+[2025-05-09 16:42:20.897] [UdpPlayer] Start
+[2025-05-09 16:42:20.907] [Setting File] Readed
+[2025-05-09 16:42:20.911] [Config File] Readed
+[2025-05-09 16:42:20.911] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:42:20.921] [WebServer] [Start]
+[2025-05-09 16:42:21.001] [Webview] Add to Control Complete
+[2025-05-09 16:42:21.047] [Display Scale] 1.75
+[2025-05-09 16:42:21.309] [Webview] WebView2 초기화 완료
+[2025-05-09 16:42:21.427] [Webview] load to http://localhost:8088
+[2025-05-09 16:42:21.935] [Webview] Add Option Complete
+[2025-05-09 16:42:21.935] [WebView] Clear Cache
+[2025-05-09 16:42:21.975] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:42:23.513] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:42:28.216] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:42:44.472] [------------------------------------------]
+[2025-05-09 16:42:44.476] [UdpPlayer] Start
+[2025-05-09 16:42:44.492] [Setting File] Readed
+[2025-05-09 16:42:44.495] [Config File] Readed
+[2025-05-09 16:42:44.495] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:42:44.510] [WebServer] [Start]
+[2025-05-09 16:42:44.610] [Webview] Add to Control Complete
+[2025-05-09 16:42:44.635] [Display Scale] 1.75
+[2025-05-09 16:42:44.879] [Webview] WebView2 초기화 완료
+[2025-05-09 16:42:44.986] [Webview] load to http://localhost:8088
+[2025-05-09 16:42:45.500] [Webview] Add Option Complete
+[2025-05-09 16:42:45.501] [WebView] Clear Cache
+[2025-05-09 16:42:45.569] [Webview] set zoom 0.571428571428571
+[2025-05-09 16:43:01.608] [------------------------------------------]
+[2025-05-09 16:43:01.613] [UdpPlayer] Start
+[2025-05-09 16:43:01.625] [Setting File] Readed
+[2025-05-09 16:43:01.628] [Config File] Readed
+[2025-05-09 16:43:01.628] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:43:01.638] [WebServer] [Start]
+[2025-05-09 16:43:01.717] [Webview] Add to Control Complete
+[2025-05-09 16:43:01.738] [Display Scale] 1.75
+[2025-05-09 16:43:02.005] [Webview] WebView2 초기화 완료
+[2025-05-09 16:43:02.111] [Webview] load to http://localhost:8088
+[2025-05-09 16:43:02.619] [Webview] Add Option Complete
+[2025-05-09 16:43:02.620] [WebView] Clear Cache
+[2025-05-09 16:43:02.700] [Webview] set zoom 0.285714285714286
+[2025-05-09 16:43:05.232] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:43:06.446] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:57:48.650] [------------------------------------------]
+[2025-05-09 16:57:48.654] [UdpPlayer] Start
+[2025-05-09 16:57:48.663] [Setting File] Readed
+[2025-05-09 16:57:48.666] [Config File] Readed
+[2025-05-09 16:57:48.667] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:57:48.678] [WebServer] [Start]
+[2025-05-09 16:57:48.752] [Webview] Add to Control Complete
+[2025-05-09 16:57:48.780] [Display Scale] 1.75
+[2025-05-09 16:57:49.030] [Webview] WebView2 초기화 완료
+[2025-05-09 16:57:49.149] [Webview] load to http://localhost:8088
+[2025-05-09 16:57:49.659] [Webview] Add Option Complete
+[2025-05-09 16:57:49.660] [WebView] Clear Cache
+[2025-05-09 16:57:49.730] [Webview] set zoom 0.285714285714286
+[2025-05-09 16:57:52.415] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:57:58.012] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:58:04.432] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:58:45.922] [------------------------------------------]
+[2025-05-09 16:58:45.928] [UdpPlayer] Start
+[2025-05-09 16:58:45.952] [Setting File] Readed
+[2025-05-09 16:58:45.957] [Config File] Readed
+[2025-05-09 16:58:45.957] [WebServer] [Init] SysWebServer.exe
+[2025-05-09 16:58:45.976] [WebServer] [Start]
+[2025-05-09 16:58:46.074] [Webview] Add to Control Complete
+[2025-05-09 16:58:46.114] [Display Scale] 1.75
+[2025-05-09 16:58:46.349] [Webview] WebView2 초기화 완료
+[2025-05-09 16:58:46.457] [Webview] load to http://localhost:8088
+[2025-05-09 16:58:46.964] [Webview] Add Option Complete
+[2025-05-09 16:58:46.964] [WebView] Clear Cache
+[2025-05-09 16:58:47.060] [Webview] set zoom 0.285714285714286
+[2025-05-09 16:58:48.985] [WebToApp] UDP_SEND, MSG_UDP_SEND
+[2025-05-09 16:59:06.160] [WebToApp] UDP_SEND, MSG_UDP_SEND
