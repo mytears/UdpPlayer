@@ -19,6 +19,8 @@ let m_mode = "0";
 let m_cart_list = [];
 let m_item_list = ["아이스 아메리카노", "아메리카노", "오렌지 주스", "포도 주스", "생수"];
 let m_item_img_list = ["images/img_ice_coffee.png", "images/img_hot_coffee.png", "images/img_orange_jucie.png", "images/img_grape_jucie.png", "images/img_water.png"];
+let m_curr_wait = 100;
+let m_reset_timer;
 
 function setInit() {
 
@@ -87,9 +89,24 @@ function setInit() {
         onClickCloseBtn(this);
     });
 
-    $(".pos_btn").on("touchstart mousedown", function (e) {
+    $(".btn_pay").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickPopupBtn(this);
+        onClickPayBtn(this);
+    });
+
+    $(".btn_cancel").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickCancelBtn(this);
+    });
+
+    $(".popupWin1 .btn_confirm").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickConfirmBtn(this);
+    });
+
+    $(".popupWin2 .btn_confirm").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickFinalConfirmBtn(this);
     });
 
     $("html").on("touchstart mousedown", function (e) {
@@ -179,9 +196,18 @@ function setInitSetting() {
 }
 
 function setMainReset() {
-    m_clickable = true;
-    $(".popup_page").hide();
-    setPage("00");
+    $(".popup").hide();
+    $(".sub_page").hide();
+    $(".main_page").show();
+    $(".sub_order").hide();
+    $(".main_order").show();
+    m_cart_list = [];
+    setCartSort();
+    setBigToggle(false);
+    setLowToggle(false);
+    setDarkToggle(false);
+    setVoiceToggle(false);
+    onClickTopMenu($('.top_menu').eq(0));
 }
 
 function onClickTopMenu(_obj) {
@@ -198,9 +224,9 @@ function onClickBtnMode(_obj) {
     switch (m_mode) {
         case "0":
             if ($(_obj).hasClass("active") == true) {
-                setdarkToggle(false);
+                setDarkToggle(false);
             } else {
-                setdarkToggle(true);
+                setDarkToggle(true);
             }
             break;
         case "1":
@@ -220,7 +246,7 @@ function onClickBtnMode(_obj) {
     }
 }
 
-function setdarkToggle(_bool) {
+function setDarkToggle(_bool) {
     if (_bool == false) {
         $(".btn_dark").removeClass("active");
         $("main").removeClass("mode_dark");
@@ -470,14 +496,26 @@ function onClickPrev(_obj) {
     }
 }
 
-function setShowPopup(_cate, _num) {
-    console.log("setShowPopup", _cate, _num);
-    $(".popup_page").show();
+function setShowPopup(_num) {
+    console.log("setShowPopup", _num);
+    $(".popupWin1").hide();
+    $(".popupWin2").hide();
+    switch (_num) {
+        case "0":
+            $(".popupWin1").show();
+            break;
+        case "1":
+            $(".popupWin2").show();
+            m_curr_wait+=1;
+            $(".popupWin2 .num").html(m_curr_wait.toString());            
+            m_reset_timer = setTimeout(setMainReset, 3000);
+            break;
+    }
+    $(".popup").show();
 }
 
 function setHidePopup() {
-    m_clickable = true;
-    $(".popup_page").fadeOut();
+    $(".popup").hide();
 }
 
 function convStr(_str) {
@@ -512,11 +550,28 @@ function setPrevNextBtnState(t_sub, t_max) {
 }
 
 function onClickHomeBtn(_obj) {
-    setPage("10");
+    setMainReset();
+}
+
+function onClickPayBtn(_obj){
+    setShowPopup("0");
+}
+
+function onClickCancelBtn(_obj){
+    setHidePopup();
+}
+
+function onClickConfirmBtn(_obj){
+    setShowPopup("1");
+}
+
+function onClickFinalConfirmBtn(_obj){
+    clearTimeout(m_reset_timer);
+    setMainReset();
 }
 
 function onClickPopupBtn(_obj) {
-    setShowPopup(t_cate, t_cid);
+    //setShowPopup(t_cate, t_cid);
 }
 
 function onClickCloseBtn(_obj) {
