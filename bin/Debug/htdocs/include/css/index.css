@@ -1,8 +1,17 @@
-.main_cont {
-    width: 2160px;
-    height: 3840px;
-    border: solid 3px #FF0000;
-    box-sizing: border-box;
+
+
+.swal2-container {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+}
+
+.swal2-popup {
+    font-size: 2.5rem !important;
 }
 
 .btn_area{
@@ -44,4 +53,17 @@
 .recv_txt{
     font-size: 40px;
     font-weight: 500;
+}
+
+
+.disabled{
+    opacity: 0.5;
+}
+
+.menuItem .txt_big{
+    white-space: nowrap;        /* 한 줄로 표시 */
+    overflow: hidden;           /* 넘치는 부분 숨김 */
+    text-overflow: ellipsis;    /* 말줄임표 (...) 표시 */
+    width: 100%;
+    text-align: center;
 }

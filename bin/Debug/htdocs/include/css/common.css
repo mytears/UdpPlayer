@@ -1,62 +1,44 @@
 ﻿
 /* font */
 @font-face {
-    font-family: notosans;
-    src: url(font/NotoSansKR-Thin.woff2) format('woff2');
-    font-weight: 100;
-    font-style: normal;
-}
-@font-face {
-    font-family: notosans;
-    src: url(font/NotoSansKR-ExtraLight.woff2) format('woff2');
-    font-weight: 200;
-    font-style: normal;
-}
-@font-face {
-    font-family: notosans;
-    src: url(font/NotoSansKR-Light.woff2) format('woff2');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: notosans;
+    font-family: 'noto';
     src: url(font/NotoSansKR-Regular.woff2) format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
-    font-family: notosans;
+    font-family: 'noto';
     src: url(font/NotoSansKR-Medium.woff2) format('woff2');
     font-weight: 500;
     font-style: normal;
 }
 @font-face {
-    font-family: notosans;
+    font-family: 'noto';
     src: url(font/NotoSansKR-Semibold.woff2) format('woff2');
     font-weight: 600;
     font-style: normal;
 }
 @font-face {
-    font-family: notosans;
-    src: url(font/NotoSansKR-Bold.woff2) format('woff2');
+    font-family: 'noto';
+    src: url(font/NotoSansKR-ExtraBold.woff2) format('woff2');
     font-weight: 700;
     font-style: normal;
 }
 @font-face {
-    font-family: notosans;
-    src: url(font/NotoSansKR-ExtraBold.woff2) format('woff2');
+    font-family: 'noto';
+    src: url(font/NotoSansKR-Bold.woff2) format('woff2');
     font-weight: 800;
     font-style: normal;
 }
 @font-face {
-    font-family: notosans;
+    font-family: 'noto';
     src: url(font/NotoSansKR-Black.woff2) format('woff2');
     font-weight: 900;
     font-style: normal;
 }
 
 * {
-    font-family: notosans;
+    font-family: 'noto';
     margin: 0;
     padding: 0;
     -webkit-text-size-adjust: none;
@@ -81,18 +63,6 @@ img {
 
 
 html,
-body {
-    font-size: 20px;
-    /* color: #383839; */
-    overflow: hidden;
-    touch-action: none;
-    /*    background-color: transparent;*/
-    background: #ffffff;
-    /*    cursor: none;*/
-    /*    touch-action: none;*/
-    /*    overflow: hidden;*/
-}
-
 html,
 body,
 div,

@@ -14,17 +14,67 @@ let m_notice_timeout = null;
 let m_curr_admin = 1;
 
 let m_curr_page = "";
+let m_cate_code = "0";
+let m_mode = "0";
+let m_cart_list = [];
+let m_item_list = ["아이스 아메리카노", "아메리카노", "오렌지 주스", "포도 주스", "생수"];
+let m_item_img_list = ["images/img_ice_coffee.png", "images/img_hot_coffee.png", "images/img_orange_jucie.png", "images/img_grape_jucie.png", "images/img_water.png"];
 
 function setInit() {
-    
+
     $(".send_btn").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickUdpSendBtn(this);
+        //onClickUdpSendBtn(this);
     });
 
     $(".next_btn").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickNextBtn(this);
+        //onClickNextBtn(this);
+    });
+
+    $(".top_menu").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickTopMenu(this);
+    });
+
+    $(".btn_mode").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickBtnMode(this);
+    });
+
+    $(".btn_voice").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickBtnVoice(this);
+    });
+
+    $(".menuItem").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickItem(this);
+    });
+
+    $(".btn_plus").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickItemPlus(this);
+    });
+
+    $(".btn_minus").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickItemMinus(this);
+    });
+
+    $(".btn_del").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickItemDel(this);
+    });
+
+    $(".btn_order").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickOrder(this);
+    });
+
+    $(".btn_prev").on("touchstart mousedown", function (e) {
+        e.preventDefault();
+        onClickPrev(this);
     });
 
     $(".home_btn").on("touchstart mousedown", function (e) {
@@ -134,6 +184,292 @@ function setMainReset() {
     setPage("00");
 }
 
+function onClickTopMenu(_obj) {
+    $(".top_menu").removeClass("active");
+    let t_code = $(_obj).attr("code");
+    m_cate_code = t_code;
+    $(_obj).addClass("active");
+    //setPage(m_cate_code);
+}
+
+function onClickBtnMode(_obj) {
+    let t_code = $(_obj).attr("code");
+    m_mode = t_code;
+    switch (m_mode) {
+        case "0":
+            if ($(_obj).hasClass("active") == true) {
+                setdarkToggle(false);
+            } else {
+                setdarkToggle(true);
+            }
+            break;
+        case "1":
+            if ($(_obj).hasClass("active") == true) {
+                setLowToggle(false);
+            } else {
+                setLowToggle(true);
+            }
+            break;
+        case "2":
+            if ($(_obj).hasClass("active") == true) {
+                setBigToggle(false);
+            } else {
+                setBigToggle(true);
+            }
+            break;
+    }
+}
+
+function setdarkToggle(_bool) {
+    if (_bool == false) {
+        $(".btn_dark").removeClass("active");
+        $("main").removeClass("mode_dark");
+    } else {
+        $(".btn_dark").addClass("active");
+        $("main").addClass("mode_dark");
+    }
+}
+
+function setLowToggle(_bool) {
+    if (_bool == false) {
+        $(".btn_low").removeClass("active");
+        $("main").removeClass("mode_low");
+    } else {
+        $(".btn_low").addClass("active");
+        $("main").addClass("mode_low");
+    }
+}
+
+function setBigToggle(_bool) {
+    if (_bool == false) {
+        $(".btn_big").removeClass("active");
+
+
+        $(".txt_big").each(function () {
+            let original_size = $(this).data("original-size");
+            if (original_size) {
+                $(this).css("font-size", original_size);
+            }
+        });
+
+    } else {
+        $(".btn_big").addClass("active");
+
+        $(".txt_big").each(function () {
+            let $this = $(this);
+            let current_size = parseFloat($this.css("font-size"));
+
+            // 최초 1회만 저장
+            if (!$this.data("original-size")) {
+                $this.data("original-size", $this.css("font-size"));
+            }
+
+            // 30% 증가
+            let bigger_size = current_size * 1.3;
+            $this.css("font-size", bigger_size + "px");
+        });
+    }
+}
+
+
+
+function onClickBtnVoice(_obj) {
+    if ($(_obj).hasClass("active") == true) {
+        setVoiceToggle(false);
+        //음성 끄기
+    } else {
+        setVoiceToggle(true);
+        //음성 켜기
+    }
+}
+
+function setVoiceToggle(_bool) {
+    if (_bool == false) {
+        $(".btn_voice").removeClass("active");
+        //음성 끄기
+    } else {
+        $(".btn_voice").addClass("active");
+        //음성 켜기
+    }
+}
+
+function onClickItem(_obj) {
+    if (m_cart_list.length >= 4) {
+        Swal.fire({
+            icon: 'error',
+            title: '최대 4개까지만 주문 가능합니다.',
+            target: ".main_cont",
+            heightAuto: false,
+            customClass: {
+                popup: 'alert',
+            },
+        });
+        return;
+    }
+    let t_code = $(_obj).attr("code");
+    m_cart_list.push(t_code);
+    setCartSort();
+    let offset = $(_obj).offset();
+    let width = $(_obj).outerWidth();
+    let height = $(_obj).outerHeight();
+    let $clone = $(_obj).clone().appendTo('body');
+    $clone.css({
+        position: 'absolute',
+        top: offset.top,
+        left: offset.left,
+        width: width,
+        height: height,
+        margin: 0,
+        zIndex: 1000,
+        pointerEvents: 'none'
+    });
+    let target_top = 2650;
+    let target_left = 100;
+    if ($(".btn_low").hasClass("active") == true) {
+        target_top = 3000;
+    }
+    // GSAP 애니메이션
+    gsap.to($clone, {
+        duration: 1,
+        top: target_top,
+        left: target_left,
+        opacity: 0,
+        scale: 0.5,
+        ease: "power2.out",
+        onComplete: function () {
+            $clone.remove();
+        }
+    });
+}
+
+function onClickItemPlus(_obj) {
+    let $box = $(_obj).closest('.cart_box');
+    let item = $box.attr('item');
+    if (m_cart_list.length >= 4) {
+        Swal.fire({
+            icon: 'error',
+            title: '최대 4개까지만 주문 가능합니다.',
+            customClass: {
+                popup: 'alert',
+            },
+        });
+        return;
+    }
+    m_cart_list.push(item); // m_cart_list에 추가
+    setCartSort();
+}
+
+function onClickItemMinus(_obj) {
+    let $box = $(_obj).closest('.cart_box');
+    let item = $box.attr('item');
+
+    if (m_cart_list.length <= 0) {
+        return;
+    }
+    //console.log(item);
+    let index = m_cart_list.lastIndexOf(item);
+    if (index !== -1) {
+        m_cart_list.splice(index, 1); // 하나만 제거
+        setCartSort();
+    }
+}
+
+function onClickItemDel(_obj) {
+    let $box = $(_obj).closest('.cart_box');
+    if ($box.length == 0) {
+        $box = $(_obj).closest('.order_box');
+    }
+    let item = $box.attr('item');
+
+    if (m_cart_list.length <= 0) {
+        return;
+    }
+    // m_cart_list에서 해당 item 값 전부 제거
+    m_cart_list = m_cart_list.filter(function (val) {
+        return val !== item;
+    });
+    setCartSort();
+}
+
+function setCartSort() {
+    if (m_cart_list.length == 0) {
+        $(".btn_order").addClass("disabled");
+        $(".btn_pay").addClass("disabled");
+    } else {
+        $(".btn_order").removeClass("disabled");
+        $(".btn_pay").removeClass("disabled");
+    }
+    $(".txt_total").html(m_cart_list.length);
+
+    console.log("m_cart_list", m_cart_list);
+
+
+    // 1. 각 코드별로 개수 집계
+    let item_counts = {};
+
+    m_cart_list.forEach(function (code_str) {
+        let code = parseInt(code_str);
+        if (item_counts[code]) {
+            item_counts[code]++;
+        } else {
+            item_counts[code] = 1;
+        }
+    });
+
+
+    // 2. cart_box 초기화
+    $('.cart_box').hide();
+    $('.order_box').hide();
+
+    // 3. item_counts에서 등장 순서대로 cart_box 채우기
+    let cart_index = 0;
+    for (let i = 0; i < m_cart_list.length; i++) {
+        let code = parseInt(m_cart_list[i]);
+
+        // 이미 처리한 상품이면 skip
+        if (item_counts[code] === false) continue;
+
+        // 해당 cart_box 선택
+        let $cart_box = $('.cart_box').eq(cart_index);
+
+        $cart_box.attr("item", m_cart_list[i]);
+        $cart_box.find('.txt_name').text(m_item_list[code]);
+        $cart_box.find('.txt_count').text(item_counts[code]);
+        $cart_box.show();
+
+        // 해당 cart_box 선택
+        let $order_box = $('.order_box').eq(cart_index);
+
+        $order_box.attr("item", m_cart_list[i]);
+        $order_box.find('.txt_name').text(m_item_list[code]);
+        $order_box.find('.txt_count').text(item_counts[code]);
+        $order_box.find('.img_zone img').attr("src", m_item_img_list[m_cart_list[i]]);
+        $order_box.show();
+
+        // 이 상품은 이미 처리했으니 다시 넣지 않게 false 처리
+        item_counts[code] = false;
+        cart_index++;
+    }
+}
+
+function onClickOrder(_obj) {
+    if ($(_obj).css("opacity") == "1") {
+        $(".sub_page").show();
+        $(".sub_order").show();
+        $(".main_page").hide();
+        $(".main_order").hide();
+    }
+}
+
+function onClickPrev(_obj) {
+    if ($(_obj).css("opacity") == "1") {
+        $(".sub_page").hide();
+        $(".sub_order").hide();
+        $(".main_page").show();
+        $(".main_order").show();
+    }
+}
+
 function setShowPopup(_cate, _num) {
     console.log("setShowPopup", _cate, _num);
     $(".popup_page").show();
@@ -156,11 +492,9 @@ function onClickUdpSendBtn(_obj) {
     setCallWebToApp('UDP_SEND', 'MSG_UDP_SEND');
 }
 
-function onClickPrevBtn(_obj) {
-}
+function onClickPrevBtn(_obj) {}
 
-function onClickNextBtn(_obj) {
-}
+function onClickNextBtn(_obj) {}
 
 function setPrevNextBtnState(t_sub, t_max) {
     //console.log("setPrevNextBtnState", t_sub, t_max);
@@ -203,9 +537,6 @@ function setPage(_code) {
 function setHide(_hide) {
     m_clickable = true;
     $(_hide).hide();
-    if ($(_hide + " .cup_img").length > 0) {
-        $(_hide + " .cup_img").css("opacity", "1");
-    }
 }
 
 function setInitFsCommand() {
@@ -227,5 +558,3 @@ function setCommand(_str) {
         $(".recv_txt").html(arg);
     }
 }
-
-

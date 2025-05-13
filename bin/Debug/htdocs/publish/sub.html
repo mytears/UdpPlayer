@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="popup">
+        <!-- 결제안내창 -->
+        <div class="popupWin popupWin1">
+            <b>신용카드를 <br>투입구에 넣어주세요</b>
+            <img src="images/img_pay1.png" alt="">
+            <p>※ 현재 체험모드이므로<br>확인을 누르시면 주문이 진행됩니다.</p>
+            <div class="btn_group">
+                <button class="btn_cancel">취소</button>
+                <button class="btn_confirm">확인</button>
+            </div>
+        </div>
+        <!-- 결제완료창 -->
+        <div class="popupWin popupWin2">
+            <b>결제가 완료되었습니다.</b>
+            <img src="images/img_pay2.png" alt="">
+            <strong class="num">000</strong>
+            <div class="btn_group">
+                <button class="btn_confirm">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <img src="images/img_banner.png" alt="">
+    </div>
+
+
+    <main class="mode_low">
+        <!-- 고대비 모드 class="mode_dark" -->
+        <!-- 낮은 모드 class="mode_low" -->
+        <div class="container">
+            <nav>
+                <ul class="menuType">
+                    <li class="active"><a href="">추천메뉴</a></li>
+                    <li><a href="">커피</a></li>
+                    <li><a href="">음료</a></li>
+                    <li><a href="">주스</a></li>
+                    <li><a href="">차</a></li>
+                </ul>
+            </nav>
+    
+            <div class="menuBox">
+                <p>주문 내용을 확인해 주세요</p>
+                <ul class="orderList">
+                    <li>
+                        <div>
+                            <div class="img_zone"><img src="images/img_coffee.png" alt=""></div>
+                            <i>아메리카노</i>
+                        </div>
+                        <em><u>2</u>개</em>
+                        <button class="btn_del"></button>
+                    </li>
+                    <li>
+                        <div>
+                            <div class="img_zone"><img src="images/img_coffee.png" alt=""></div>
+                            <i>아메리카노</i>
+                        </div>
+                        <em><u>2</u>개</em>
+                        <button class="btn_del"></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="orderBox">
+            <div class="receipt">
+                <div>
+                    <span>전체수량</span>
+                    총 <i>3</i>개
+                </div>
+                <div>
+                    <span>결제금액</span>
+                    <i>0</i>원(무료)
+                </div>
+            </div>
+            <div>
+                <button class="btn_prev">
+                    이전
+                </button>
+                <button class="btn_pay">
+                    결제<br>하기
+                </button>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <ul>
+            <li>
+                <button class="btn_mode1">
+                    <div class="img_zone"></div>
+                    <span>고대비</span>
+                </button>
+            </li>
+            <li>
+                <button class="btn_mode2">
+                    <div class="img_zone"></div>
+                    <span>낮은모드</span>
+                </button>
+            </li>
+            <li >
+                <button class="btn_mode3">
+                    <div class="img_zone"></div>
+                    <span>큰글씨</span>
+                </button>
+            </li>
+            <li>
+                <button class="btn_mode4 active">
+                    <div class="img_zone"></div>
+                    <span>음성켜짐</span>
+                </button>
+            </li>
+        </ul>
+    </footer>
+
+</body>
+</html>

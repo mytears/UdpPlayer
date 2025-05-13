@@ -1,4 +1,35 @@
 {
     "header": {},
-    "contents_list": []
+    "contents_list": [
+        {
+            "id":"0",
+            "title":"아이스 아메리카노",
+            "price":"free",
+            "file_path":"images/img_ice_coffee.png"
+        },
+        {
+            "id":"1",
+            "title":"아메리카노",
+            "price":"free",
+            "file_path":"images/img_hot_coffee.png"
+        },
+        {
+            "id":"2",
+            "title":"오렌지 주스",
+            "price":"free",
+            "file_path":"images/img_orange_jucie.png"
+        },
+        {
+            "id":"3",
+            "title":"포도 주스",
+            "price":"free",
+            "file_path":"images/img_grape_jucie.png"
+        },
+        {
+            "id":"4",
+            "title":"생수",
+            "price":"free",
+            "file_path":"images/img_water.png"
+        }
+    ]
 }

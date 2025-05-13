@@ -1,0 +1,151 @@
+/* font */
+@font-face {
+    font-family: 'noto';
+    font-weight: 400;
+    src: url(font/NotoSansKR-Regular.ttf);
+}
+@font-face {
+    font-family: 'noto';
+    font-weight: 500;
+    src: url(font/NotoSansKR-Medium.ttf);
+}
+@font-face {
+    font-family: 'noto';
+    font-weight: 600;
+    src: url(font/NotoSansKR-SemiBold.ttf);
+}
+@font-face {
+    font-family: 'noto';
+    font-weight: 700;
+    src: url(font/NotoSansKR-ExtraBold.ttf);
+}
+@font-face {
+    font-family: 'noto';
+    font-weight: 800;
+    src: url(font/NotoSansKR-Bold.ttf);
+}
+@font-face {
+    font-family: 'noto';
+    font-weight: 900;
+    src: url(font/NotoSansKR-Black.ttf);
+}
+
+
+/* 일반 */
+body { position: relative; display: flex; flex-direction: column; justify-content: end; width: 2160px; height: 3840px;}
+body, button { font-family: 'noto'; font-weight: 400;}
+.banner { height: 500px; width: 100%; background-color: #333;}
+.menuType { width: 100%; height: 245px;}
+.menuType { display: flex;}
+.menuType li { width: 100%; height: 100%;}
+.menuType li a { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background-color: #362903; color: #fff; font-size: 60px; text-align: center; font-weight: 500;}
+.menuType li.active a { background-color: #FFDC00; color: #000; font-weight: 600;}
+
+.menuBox { height: 2190px; padding: 95px 100px; width: 100%; background-color: #FFDC00; box-sizing: border-box;}
+.menuBox p { margin: 200px 0 115px; font-size: 70px; font-weight: 600; text-align: center;}
+.menuList { display: flex; flex-wrap: wrap; }
+.menuItem { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 27px; width: 585px; height: 625px; border-radius: 60px; background-color: #fff; box-shadow: 4px 4px 15px #00000038; }
+.menuItem .img_zone { width: 330px; height: 330px; }
+.menuItem .img_zone img { width: 100%; height: 100%;}
+.menuItem i { margin-top: 20px; font-size: 60px; font-weight: 600;}
+.menuItem em { font-size: 50px; font-weight: 600; }
+.orderList li { margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0 300px 0 60px; width: 1680px; height: 350px; background: #FFFFFF 0% 0% no-repeat padding-box; box-shadow: 10px 10px 15px #0000001C; border-radius: 37px; font-size: 65px; font-weight: 500; box-sizing: border-box;}
+.orderList li~li { margin-top: 45px;}
+.orderList li div { display: flex; align-items: center;}
+.orderList li .img_zone { margin-right: 50px; width: 250px; height: 250px; }
+.orderList li .img_zone img { width: 100%; height: 100%;}
+.orderList i,
+.orderList em { font-weight: 500;}
+.orderList .btn_del { width: 90px; height: 90px; position: absolute; right: 50px; top: 50%; transform: translateY(-50%); }
+
+.orderBox { padding: 0 70px; display: flex; align-items:center; justify-content: space-between; height: 665px; background-color: #fff; box-sizing: border-box; font-weight: 500;}
+.orderBox .receipt { align-self: flex-start; padding: 50px 70px 50px 100px; margin-top: 90px;}
+.orderBox .receipt div { display: block; margin-bottom: 15px; font-size: 54px; font-weight: 600;}
+.orderBox .receipt div span { margin-right: 80px; font-weight: 600; }
+.orderBox .receipt div i { color: #E02E00; font-weight: 600; }
+.selectList { overflow: scroll; padding-right: 40px; padding-top: 50px; width: 1370px; height: 100%; font-size: 60px; box-sizing: border-box;}
+.selectList::-webkit-scrollbar { display: none; } 
+.selectList li { padding: 0 40px; display: flex; justify-content: space-between; line-height: 135px; box-sizing: border-box;}
+.selectList li~li { border-top: 6px solid #E9E9E9;}
+.selectList li div { display: flex; align-items: center; }
+.selectList li i { color: #E02E00;}
+.selectList li button { width: 77px; height: 77px; margin-top: 8px;}
+.btn_del { margin-right: 45px; background: url(../images/btn_del.png) no-repeat center / 100% auto;}
+.btn_minus { margin-right: 48px; background: url(../images/btn_minus.png) no-repeat center / 100% auto;}
+.btn_plus { margin-left: 48px; background: url(../images/btn_plus.png) no-repeat center / 100% auto;}
+.btn_order,
+.btn_pay,
+.btn_prev { height: 560px; border-radius: 55px; color: #fff; font-size: 100px; font-weight: 500; line-height: 130px; }
+.btn_order { width: 560px; background: transparent linear-gradient(180deg, #EA3000 0%, #C52800 100%) 0% 0% no-repeat padding-box; }
+.btn_pay { width: 390px; background: transparent linear-gradient(180deg, #EA3000 0%, #C52800 100%) 0% 0% no-repeat padding-box;}
+.btn_prev { margin-right: 35px; width: 390px; background: transparent linear-gradient(180deg, #5E5E5E 0%, #393939 100%) 0% 0% no-repeat padding-box;}
+
+footer { height: 240px; background-color: #353535;}
+footer ul { display: flex; align-items: center; justify-content: center; height: 100%;}
+footer li { margin: 0 22px;}
+footer li button { position: relative; display: flex; align-items: center; padding-left: 160px; width: 440px; height: 140px; border: 5px solid #fff; border-radius: 70px; color: #fff; font-size: 52px; font-weight: 500;}
+footer li button.active { background-color: #fff; color: #000;}
+footer li button .img_zone { position: absolute; left: 45px; top: 50%; transform: translateY(-50%); width: 100px; height: 100px;}
+footer li:nth-child(1) .img_zone { background: url(../images/ico_mode1.png) no-repeat center / 100% auto;}
+footer li:nth-child(2) .img_zone { background: url(../images/ico_mode2.png) no-repeat center / 100% auto;}
+footer li:nth-child(3) .img_zone { background: url(../images/ico_mode3.png) no-repeat center / 100% auto;}
+footer li:nth-child(4) .img_zone { background: url(../images/ico_mode4.png) no-repeat center / 100% auto;}
+footer li:nth-child(1) button.active .img_zone { background: url(../images/ico_mode1_active.png) no-repeat center / 100% auto;}
+footer li:nth-child(2) button.active .img_zone { background: url(../images/ico_mode2_active.png) no-repeat center / 100% auto;}
+footer li:nth-child(3) button.active .img_zone { background: url(../images/ico_mode3_active.png) no-repeat center / 100% auto;}
+footer li:nth-child(4) button.active .img_zone { background: url(../images/ico_mode4_active.png) no-repeat center / 100% auto;}
+footer li button span { display: inline-block; width: 200px;}
+
+/* 결제창 */
+.popup { display: none;}
+.popupWin1 { display: none;}
+.popup { z-index: 1; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .8);}
+.popupWin { position: relative; z-index: 1; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding-top: 225px; width: 1400px; height: 1880px; background-color: #fff; text-align: center; box-sizing: border-box;}
+.popupWin b { display: flex; align-items: end; justify-content: center; height: 230px; font-size: 85px; font-weight: 700; line-height: 115px;}
+.popupWin p { margin-top: 90px; font-size: 54px; color: #FF0000; line-height: 73px; font-weight: 600;}
+.popupWin1 b { margin-bottom: 110px;}
+.popupWin strong { position: absolute; top: 970px; left: 50%; transform: translateX(-50%); font-size: 208px; color: #E22121;}
+.btn_group { position: absolute; bottom: 125px; left: 50%; transform: translateX(-50%); display: flex;}
+.btn_group button { margin: 0 25px; width: 460px; height: 150px; font-size: 70px;}
+.btn_confirm { background-color: #707070; color: #fff;}
+.btn_cancel { background-color: #fff; border: 7px solid #707070; color: #707070;}
+
+/* 고대비 모드 */
+.mode_dark .menuType li a { background-color: #000;}
+.mode_dark .menuType li.active a { background-color: #fff;}
+.mode_dark .menuBox { background-color: #fff;}
+.mode_dark .menuItem { border: 7px solid #000;}
+
+.mode_dark .orderBox { background-color: #000; color: #fff;}
+.mode_dark .selectList li~li { border-top: 6px solid #434343;}
+.mode_dark .selectList li i { color: #FFDC00;}
+.mode_dark .selectList .btn_del { background-image: url(../images/btn_del_dark.png);}
+.mode_dark .btn_minus { background-image: url(../images/btn_minus_dark.png);}
+.mode_dark .btn_plus { background-image: url(../images/btn_plus_dark.png);}
+.mode_dark .btn_order,
+.mode_dark .btn_pay { background: #FFDC00; color: #000;}
+.mode_dark .btn_prev { background: #fff; color: #000;}
+.mode_dark .orderList li { border: 7px solid #000;}
+.mode_dark .orderBox .receipt div i { color: #FFDC00; }
+
+
+/* 낮은모드 */
+.mode_low .container { display: flex; height: 1050px;}
+.mode_low .menuBox { padding: 30px 65px; height: 1050px;}
+.mode_low .menuType { flex-direction: column; height: 100%;}
+.mode_low .menuType li a { width: 430px;}
+.mode_low .menuItem { margin: 20px; width: 360px; height: 455px; border-radius: 37px;}
+.mode_low .menuItem .img_zone { width: 250px; height: 250px;}
+.mode_low .menuItem i { font-size: 45px;}
+.mode_low .menuItem em { font-size: 35px;}
+.mode_low .orderBox { height: 515px;}
+.mode_low .btn_order { height: 420px;}
+.mode_low .btn_prev { height: 420px;}
+.mode_low .btn_pay { height: 420px;}
+.mode_low .orderList li { width: 1000px; height: 145px; padding: 0 210px 0 70px;}
+.mode_low .orderList li .img_zone { display: none;}
+.mode_low .orderList li~li { margin-top: 30px;}
+.mode_low .orderList li i,
+.mode_low .orderList li em { font-size: 50px;}
+.mode_low .orderList .btn_del { right: 0;}
+.mode_low .menuBox p { margin: 100px 0 60px; font-size: 55px;}

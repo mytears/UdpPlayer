@@ -7,18 +7,245 @@
     <title></title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+    <link rel="stylesheet" href="include/css/default.css">
+    <link rel="stylesheet" href="include/css/style.css">
     <link rel="stylesheet" href="include/css/common.css">
     <link rel="stylesheet" href="include/css/index.css">
+    <link rel="stylesheet" href="include/css/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <script src="include/js/lib/jquery.min.js"></script>
     <script src="include/js/lib/jquery.ripples.min.js"></script>
     <script src="include/js/lib/gsap.min.js"></script>
+    <script src="include/js/lib/sweetalert2.min.js"></script>
     <script src="include/js/comm.js"></script>
     <script src="include/js/index.js"></script>
 </head>
 
 <body>
     <div class="main_cont">
+    </div>
+    <div class="popup" style="display: none;">
+        <!-- 결제안내창 -->
+        <div class="popupWin popupWin1">
+            <b>신용카드를 <br>투입구에 넣어주세요</b>
+            <img src="images/img_pay1.png">
+            <p>※ 현재 체험모드이므로<br>확인을 누르시면 주문이 진행됩니다.</p>
+            <div class="btn_group">
+                <button class="btn_cancel">취소</button>
+                <button class="btn_confirm">확인</button>
+            </div>
+        </div>
+        <!-- 결제완료창 -->
+        <div class="popupWin popupWin2">
+            <b>결제가 완료되었습니다.</b>
+            <img src="images/img_pay2.png">
+            <strong class="num">000</strong>
+            <div class="btn_group">
+                <button class="btn_confirm">확인</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="banner">
+        <img src="images/img_banner.png">
+    </div>
+
+
+
+
+    <main class="">
+        <!-- 고대비 모드 class="mode_dark" -->
+        <!-- 낮은 모드 class="mode_low" -->
+        <div class="container">
+            <nav>
+                <ul class="menuType">
+                    <li class="top_menu active"><a class="txt_big">추천메뉴</a></li>
+                    <li class="top_menu"><a class="txt_big">커피</a></li>
+                    <li class="top_menu"><a class="txt_big">음료</a></li>
+                    <li class="top_menu"><a class="txt_big">주스</a></li>
+                    <li class="top_menu"><a class="txt_big">차</a></li>
+                </ul>
+            </nav>
+
+            <div class="sub_page" style="display: none;">
+                <div class="menuBox">
+                    <p class="txt_big">주문 내용을 확인해 주세요</p>
+                    <ul class="orderList">
+                        <li class="order_box" code="0" item="9" style="display: none;">
+                            <div>
+                                <div class="img_zone"><img src=""></div>
+                                <i class="txt_name txt_big"></i>
+                            </div>
+                            <em class="txt_big"><u class="txt_count">0</u>개</em>
+                            <button class="btn_del"></button>
+                        </li>
+                        <li class="order_box" code="1" item="9" style="display: none;">
+                            <div>
+                                <div class="img_zone"><img src=""></div>
+                                <i class="txt_name txt_big"></i>
+                            </div>
+                            <em class="txt_big"><u class="txt_count">0</u>개</em>
+                            <button class="btn_del"></button>
+                        </li>
+                        <li class="order_box" code="2" item="9" style="display: none;">
+                            <div>
+                                <div class="img_zone"><img src=""></div>
+                                <i class="txt_name txt_big"></i>
+                            </div>
+                            <em class="txt_big"><u class="txt_count">0</u>개</em>
+                            <button class="btn_del"></button>
+                        </li>
+                        <li class="order_box" code="3" item="9" style="display: none;">
+                            <div>
+                                <div class="img_zone"><img src=""></div>
+                                <i class="txt_name txt_big"></i>
+                            </div>
+                            <em class="txt_big"><u class="txt_count">0</u>개</em>
+                            <button class="btn_del"></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_page">
+                <div class="menuBox">
+                    <ul class="menuList">
+                        <li class="menuItem" code="0">
+                            <div class="img_zone"><img src="images/img_ice_coffee.png"></div>
+                            <i class="txt_big">아이스 아메리카노</i>
+                            <em class="txt_big">free</em>
+                        </li>
+                        <li class="menuItem" code="1">
+                            <div class="img_zone"><img src="images/img_hot_coffee.png"></div>
+                            <i class="txt_big">아메리카노</i>
+                            <em class="txt_big">free</em>
+                        </li>
+                        <li class="menuItem" code="2">
+                            <div class="img_zone"><img src="images/img_orange_jucie.png"></div>
+                            <i class="txt_big">오렌지 주스</i>
+                            <em class="txt_big">free</em>
+                        </li>
+                        <li class="menuItem" code="3">
+                            <div class="img_zone"><img src="images/img_grape_jucie.png"></div>
+                            <i class="txt_big">포도 주스</i>
+                            <em class="txt_big">free</em>
+                        </li>
+                        <li class="menuItem" code="4">
+                            <div class="img_zone"><img src="images/img_water.png"></div>
+                            <i class="txt_big">생수</i>
+                            <em class="txt_big">free</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="orderBox sub_order" style="display: none;">
+            <div class="receipt">
+                <div class="txt_big">
+                    <span>전체수량</span>
+                    총 <i class="txt_total">3</i>개
+                </div>
+                <div class="txt_big">
+                    <span>결제금액</span>
+                    <i>0</i>원(무료)
+                </div>
+            </div>
+            <div>
+                <button class="btn_prev txt_big">
+                    이전
+                </button>
+                <button class="btn_pay txt_big disabled">
+                    결제<br>하기
+                </button>
+            </div>
+        </div>
+        <div class="orderBox main_order">
+            <ul class="selectList">
+                <li class="cart_box" code="0" item="9" style="display: none;">
+                    <div>
+                        <button class="btn_del"></button>
+                        <div class="txt_name txt_big"></div>
+                    </div>
+                    <div class="order_count">
+                        <button class="btn_minus"></button>
+                        <div class="txt_big"><i class="txt_count">0</i>개</div>
+                        <button class="btn_plus"></button>
+                    </div>
+                </li>
+                <li class="cart_box" code="1" item="9" style="display: none;">
+                    <div>
+                        <button class="btn_del"></button>
+                        <div class="txt_name txt_big"></div>
+                    </div>
+                    <div class="order_count">
+                        <button class="btn_minus"></button>
+                        <div class="txt_big"><i class="txt_count">0</i>개</div>
+                        <button class="btn_plus"></button>
+                    </div>
+                </li>
+                <li class="cart_box" code="2" item="9" style="display: none;">
+                    <div>
+                        <button class="btn_del"></button>
+                        <div class="txt_name txt_big"></div>
+                    </div>
+                    <div class="order_count">
+                        <button class="btn_minus"></button>
+                        <div class="txt_big"><i class="txt_count">0</i>개</div>
+                        <button class="btn_plus"></button>
+                    </div>
+                </li>
+                <li class="cart_box" code="3" item="9" style="display: none;">
+                    <div>
+                        <button class="btn_del"></button>
+                        <div class="txt_name txt_big"></div>
+                    </div>
+                    <div class="order_count">
+                        <button class="btn_minus"></button>
+                        <div class="txt_big"><i class="txt_count">0</i>개</div>
+                        <button class="btn_plus"></button>
+                    </div>
+                </li>
+            </ul>
+            <button class="btn_order disabled">
+                <div class="txt_big"><i class="txt_total">0</i>개<br>주문하기</div>
+            </button>
+        </div>
+    </main>
+
+
+    <footer>
+        <ul>
+            <li>
+                <button class="btn_mode1 btn_mode btn_dark" code="0">
+                    <div class="img_zone"></div>
+                    <span>고대비</span>
+                </button>
+            </li>
+            <li>
+                <button class="btn_mode2 btn_mode btn_low" code="1">
+                    <div class="img_zone"></div>
+                    <span>낮은모드</span>
+                </button>
+            </li>
+            <li>
+                <button class="btn_mode3 btn_mode btn_big" code="2">
+                    <div class="img_zone"></div>
+                    <span>큰글씨</span>
+                </button>
+            </li>
+            <li>
+                <button class="btn_mode4 btn_voice" code="3">
+                    <div class="img_zone"></div>
+                    <span>음성켜짐</span>
+                </button>
+            </li>
+        </ul>
+    </footer>
+
+
+    <div class="main_cont" style="display: none;">
         <div class="btn_area">
             <div class="send_btn">전송</div>
         </div>
@@ -26,9 +253,7 @@
             <div class="recv_txt">테스트</div>
         </div>
     </div>
-</body>
-
-</html>
+</body></html>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         setTimeout(setInit, 100);
