@@ -21,6 +21,9 @@ let m_item_list = ["아이스 아메리카노", "아메리카노", "오렌지 �
 let m_item_img_list = ["images/img_ice_coffee.png", "images/img_hot_coffee.png", "images/img_orange_jucie.png", "images/img_grape_jucie.png", "images/img_water.png"];
 let m_curr_wait = 100;
 let m_reset_timer;
+let m_curr_playing = null;
+
+let m_top_menu_num = 0;
 
 function setInit() {
 
@@ -196,6 +199,7 @@ function setInitSetting() {
 }
 
 function setMainReset() {
+    m_top_menu_num = 0;
     $(".popup").hide();
     $(".sub_page").hide();
     $(".main_page").show();
@@ -313,9 +317,11 @@ function setVoiceToggle(_bool) {
     if (_bool == false) {
         $(".btn_voice").removeClass("active");
         //음성 끄기
+        setSoundPlay("voice/voice_common_08.wav");
     } else {
         $(".btn_voice").addClass("active");
         //음성 켜기
+        setSoundPlay("voice/voice_common_07.wav");
     }
 }
 
@@ -506,8 +512,8 @@ function setShowPopup(_num) {
             break;
         case "1":
             $(".popupWin2").show();
-            m_curr_wait+=1;
-            $(".popupWin2 .num").html(m_curr_wait.toString());            
+            m_curr_wait += 1;
+            $(".popupWin2 .num").html(m_curr_wait.toString());
             m_reset_timer = setTimeout(setMainReset, 3000);
             break;
     }
@@ -553,19 +559,19 @@ function onClickHomeBtn(_obj) {
     setMainReset();
 }
 
-function onClickPayBtn(_obj){
+function onClickPayBtn(_obj) {
     setShowPopup("0");
 }
 
-function onClickCancelBtn(_obj){
+function onClickCancelBtn(_obj) {
     setHidePopup();
 }
 
-function onClickConfirmBtn(_obj){
+function onClickConfirmBtn(_obj) {
     setShowPopup("1");
 }
 
-function onClickFinalConfirmBtn(_obj){
+function onClickFinalConfirmBtn(_obj) {
     clearTimeout(m_reset_timer);
     setMainReset();
 }
@@ -593,6 +599,101 @@ function setHide(_hide) {
     m_clickable = true;
     $(_hide).hide();
 }
+
+function setSoundPlay(_sound) {
+    console.log("setSoundPlay", _sound);
+    if (m_curr_playing) {
+        m_curr_playing.pause();
+        m_curr_playing.currentTime = 0;
+        m_curr_playing.src = _sound;
+    } else {
+        m_curr_playing = new Audio(_sound);
+    }
+    m_curr_playing.play();
+}
+
+
+
+
+
+
+function onRecvKeypad(_cmd) {
+    console.log(_cmd);
+
+    if (_cmd == "Left" || _cmd == "Right" || _cmd == "Up" || _cmd == "Down") {
+        setArrowKeypad(_cmd);
+    } else if (_cmd == "*") {
+
+    } else if (_cmd == "#") {
+
+    } else if (_cmd == "h") {
+        setMainReset();
+    } else if (_cmd == "Back") {
+
+    } else if (_cmd == "Return") {
+        setSelectEvent();
+    } else {}
+}
+
+function setArrowKeypad(_cmd) {
+    console.log("setArrowKeypad", _cmd);
+    if (_cmd == "Left") {
+        if (m_top_menu_num > 1) {
+            m_top_menu_num -= 1;
+        }
+        setMenuOutline(m_top_menu_num);
+    } else if (_cmd == "Right") {        
+        if (m_top_menu_num < 5) {
+            m_top_menu_num += 1;
+        }
+        setMenuOutline(m_top_menu_num);
+    } else if (_cmd == "Up") {
+        console.log("DD");
+    } else if (_cmd == "Down") {
+        console.log("DD");
+    }
+}
+
+function setMenuOutline(_num) {
+    console.log("setMenuOutline", _num);
+    $('.menuType li').removeClass('btn_outline');
+    $('.menuType li:nth-child(' + _num + ')').addClass('btn_outline');
+    setSoundPlay("voice/voice_top_0" + (parseInt(_num)) + ".wav");
+}
+
+function setSelectEvent() {
+    if (m_curr_document == null) {
+        if (m_chk_page_num > 0) {
+            const t_btn = $(`.middle_nav li[code="${m_chk_page_num}"]`);
+            test_startTime = Date.now();
+            onClickMainMenu(t_btn);
+        }
+    } else {
+        m_curr_document.setSelectEvent();
+    }
+}
+
+
+function onClickBtnBack(_obj) {
+    if ($("#id_popup_pdf").css("display") != "none" || $("#id_popup_video").css("display") != "none") {
+        onClickBtnPopupClose();
+    } else {
+        if (m_curr_document != null) {
+            m_curr_document.onClickBtnBack();
+        }
+    }
+}
+
+function onClickBtnHome(_obj) {
+    setMainReset();
+}
+
+
+
+
+
+
+
 
 function setInitFsCommand() {
     if (window.chrome.webview) {

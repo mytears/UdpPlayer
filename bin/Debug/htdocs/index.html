@@ -22,6 +22,34 @@
 </head>
 
 <body>
+    
+
+    <div class="debug_area" style="width:100%;">
+        <button class="btn" onClick="javascript:onRecvKeypad('Left');">◀</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('Right');">▶</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('Up');">▲</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('Down');">▼</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('Return');">●</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('*');">*</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('#');">#</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('h');">△</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('Back');">✕</button>
+        <br>
+        <button class="btn" onClick="javascript:onRecvKeypad('1');">1</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('2');">2</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('3');">3</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('4');">4</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('5');">5</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('6');">6</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('7');">7</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('8');">8</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('9');">9</button>
+        <button class="btn" onClick="javascript:onRecvKeypad('0');">0</button>
+        <button class="btn" onClick="javascript:onClickDebug('bon');">버튼 ON</button>
+        <button class="btn" onClick="javascript:onClickDebug('boff');">버튼 Off</button>
+    </div>
+    
+    
     <div class="popup" style="display: none;">
         <!-- 결제안내창 -->
         <div class="popupWin popupWin1" style="display: none;">
@@ -60,8 +88,8 @@
                 <ul class="menuType">
                     <li class="top_menu active"><a class="txt_big">추천메뉴</a></li>
                     <li class="top_menu"><a class="txt_big">커피</a></li>
-                    <li class="top_menu"><a class="txt_big">음료</a></li>
                     <li class="top_menu"><a class="txt_big">주스</a></li>
+                    <li class="top_menu"><a class="txt_big">생수</a></li>
                     <li class="top_menu"><a class="txt_big">차</a></li>
                 </ul>
             </nav>
