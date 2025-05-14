@@ -1,1 +1,1 @@
-https://mytears.github.io/udpplayer/
+https://mytears.github.io/UdpPlayer/
