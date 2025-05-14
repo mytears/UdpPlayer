@@ -324,7 +324,6 @@ function onClickItem(_obj) {
         Swal.fire({
             icon: 'error',
             title: '최대 4개까지만 주문 가능합니다.',
-            target: ".main_cont",
             heightAuto: false,
             customClass: {
                 popup: 'alert',
@@ -375,6 +374,7 @@ function onClickItemPlus(_obj) {
         Swal.fire({
             icon: 'error',
             title: '최대 4개까지만 주문 가능합니다.',
+            heightAuto: false,
             customClass: {
                 popup: 'alert',
             },
