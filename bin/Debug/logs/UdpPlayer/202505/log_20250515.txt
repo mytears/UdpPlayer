@@ -1,0 +1,407 @@
+﻿[2025-05-15 15:35:55.252] [------------------------------------------]
+[2025-05-15 15:35:55.255] [UdpPlayer] Start
+[2025-05-15 15:35:55.265] [Setting File] Readed
+[2025-05-15 15:35:55.279] [Setting] controlBoard port 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:35:55.281] [Setting] sensor port 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:35:55.282] [Setting] sensor dist 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:35:55.283] [Setting] sensor max 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:35:55.284] [Setting] sensor rate 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:35:55.312] [Exception] <SetLoadSettingIni> System.Collections.Generic.KeyNotFoundException: 지정한 키가 사전에 없습니다.
+   위치: System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   위치: UdpPlayer.Form1.SetLoadSettingIni() 파일 C:\Users\User\Desktop\@pro.ject\@@Git\UdpPlayer\Form1.cs:줄 297
+[2025-05-15 15:35:55.322] [Config File] Readed
+[2025-05-15 15:35:55.322] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:35:55.327] [WebServer] [Start]
+[2025-05-15 15:35:55.864] [Webview] Add to Control Complete
+[2025-05-15 15:35:55.905] [Display Scale] 1.75
+[2025-05-15 15:35:56.125] [Webview] WebView2 초기화 완료
+[2025-05-15 15:35:56.243] [Webview] load to http://localhost:8088
+[2025-05-15 15:35:56.753] [Webview] Add Option Complete
+[2025-05-15 15:35:56.754] [WebView] Clear Cache
+[2025-05-15 15:35:56.945] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:36:36.537] [WebToApp] UDP_SEND, 101|1^4^0
+[2025-05-15 15:36:57.946] [WebToApp] STATUS, STATUS
+[2025-05-15 15:44:21.410] [------------------------------------------]
+[2025-05-15 15:44:21.414] [UdpPlayer] Start
+[2025-05-15 15:44:21.424] [Setting File] Readed
+[2025-05-15 15:44:21.432] [Setting] controlBoard port 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:44:21.434] [Setting] sensor port 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:44:21.435] [Setting] sensor dist 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:44:21.437] [Setting] sensor max 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:44:21.438] [Setting] sensor rate 없음 > 지정한 키가 사전에 없습니다.
+[2025-05-15 15:44:21.449] [Exception] <SetLoadSettingIni> System.Collections.Generic.KeyNotFoundException: 지정한 키가 사전에 없습니다.
+   위치: System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   위치: UdpPlayer.Form1.SetLoadSettingIni() 파일 C:\Users\User\Desktop\@pro.ject\@@Git\UdpPlayer\Form1.cs:줄 323
+[2025-05-15 15:44:21.453] [Config File] Readed
+[2025-05-15 15:44:21.453] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:44:21.464] [WebServer] [Start]
+[2025-05-15 15:44:21.549] [Webview] Add to Control Complete
+[2025-05-15 15:44:21.571] [Display Scale] 1.75
+[2025-05-15 15:44:21.817] [Webview] WebView2 초기화 완료
+[2025-05-15 15:44:21.933] [Webview] load to http://localhost:8088
+[2025-05-15 15:44:22.448] [Webview] Add Option Complete
+[2025-05-15 15:44:22.449] [WebView] Clear Cache
+[2025-05-15 15:44:22.623] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:44:34.989] [WebServer] Kill
+[2025-05-15 15:44:34.997] [UdpPlayer] Stop
+[2025-05-15 15:44:34.997] [------------------------------------------]
+[2025-05-15 15:46:27.731] [------------------------------------------]
+[2025-05-15 15:46:27.734] [UdpPlayer] Start
+[2025-05-15 15:46:27.744] [Setting File] Readed
+[2025-05-15 15:46:27.830] [Exception] <<InitializeControlComport>b__79_0> 'COM7' 포트가 없습니다.
+[2025-05-15 15:46:27.834] [Config File] Readed
+[2025-05-15 15:46:27.835] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:46:27.839] [WebServer] [Start]
+[2025-05-15 15:46:27.907] [Webview] Add to Control Complete
+[2025-05-15 15:46:27.934] [Display Scale] 1.75
+[2025-05-15 15:46:27.992] [Control Com Port] COM7 Port is Opened
+[2025-05-15 15:46:27.992] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 15:46:28.258] [Webview] WebView2 초기화 완료
+[2025-05-15 15:46:28.373] [Webview] load to http://localhost:8088
+[2025-05-15 15:46:28.885] [Webview] Add Option Complete
+[2025-05-15 15:46:28.886] [WebView] Clear Cache
+[2025-05-15 15:46:29.175] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:46:30.311] [AppToWeb] KEYPAD|5
+[2025-05-15 15:46:30.394] [AppToWeb] KEYPAD|4
+[2025-05-15 15:46:30.522] [AppToWeb] KEYPAD|4
+[2025-05-15 15:46:30.578] [AppToWeb] KEYPAD|6
+[2025-05-15 15:46:30.594] [AppToWeb] KEYPAD|5
+[2025-05-15 15:46:30.747] [AppToWeb] KEYPAD|4
+[2025-05-15 15:46:41.242] [AppToWeb] KEYPAD|F12
+[2025-05-15 15:46:47.513] [WebServer] Kill
+[2025-05-15 15:46:47.521] [UdpPlayer] Stop
+[2025-05-15 15:46:47.521] [------------------------------------------]
+[2025-05-15 15:50:47.706] [------------------------------------------]
+[2025-05-15 15:50:47.710] [UdpPlayer] Start
+[2025-05-15 15:50:47.718] [Setting File] Readed
+[2025-05-15 15:50:47.739] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 15:50:47.741] [Config File] Readed
+[2025-05-15 15:50:47.741] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:50:47.745] [WebServer] [Start]
+[2025-05-15 15:50:47.818] [Webview] Add to Control Complete
+[2025-05-15 15:50:47.839] [Display Scale] 1.75
+[2025-05-15 15:50:47.881] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 15:50:47.881] [Control Com Port] COM7 Port is Opened
+[2025-05-15 15:50:48.152] [Webview] WebView2 초기화 완료
+[2025-05-15 15:50:48.257] [Webview] load to http://localhost:8088
+[2025-05-15 15:50:48.765] [Webview] Add Option Complete
+[2025-05-15 15:50:48.765] [WebView] Clear Cache
+[2025-05-15 15:50:48.950] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:50:50.737] [AppToWeb] KEYPAD|1
+[2025-05-15 15:50:51.226] [AppToWeb] KEYPAD|2
+[2025-05-15 15:50:57.354] [WebServer] Kill
+[2025-05-15 15:50:57.374] [UdpPlayer] Stop
+[2025-05-15 15:50:57.374] [------------------------------------------]
+[2025-05-15 15:51:05.129] [------------------------------------------]
+[2025-05-15 15:51:05.133] [UdpPlayer] Start
+[2025-05-15 15:51:05.145] [Setting File] Readed
+[2025-05-15 15:51:05.164] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 15:51:05.196] [Config File] Readed
+[2025-05-15 15:51:05.196] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:51:05.200] [WebServer] [Start]
+[2025-05-15 15:51:05.271] [Webview] Add to Control Complete
+[2025-05-15 15:51:05.295] [Display Scale] 1.75
+[2025-05-15 15:51:05.351] [Control Com Port] COM7 Port is Opened
+[2025-05-15 15:51:05.351] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 15:51:05.567] [Webview] WebView2 초기화 완료
+[2025-05-15 15:51:05.673] [Webview] load to http://localhost:8088
+[2025-05-15 15:51:06.186] [Webview] Add Option Complete
+[2025-05-15 15:51:06.187] [WebView] Clear Cache
+[2025-05-15 15:51:06.389] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:51:57.330] [AppToWeb] KEYPAD|Back
+[2025-05-15 15:51:57.881] [AppToWeb] KEYPAD|Back
+[2025-05-15 15:51:58.057] [AppToWeb] KEYPAD|Back
+[2025-05-15 15:52:01.841] [WebServer] Kill
+[2025-05-15 15:52:01.853] [UdpPlayer] Stop
+[2025-05-15 15:52:01.853] [------------------------------------------]
+[2025-05-15 15:56:00.215] [------------------------------------------]
+[2025-05-15 15:56:00.221] [UdpPlayer] Start
+[2025-05-15 15:56:00.234] [Setting File] Readed
+[2025-05-15 15:56:00.254] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 15:56:00.284] [Config File] Readed
+[2025-05-15 15:56:00.284] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:56:00.290] [WebServer] [Start]
+[2025-05-15 15:56:00.382] [Webview] Add to Control Complete
+[2025-05-15 15:56:00.400] [Display Scale] 1.75
+[2025-05-15 15:56:00.458] [Control Com Port] COM7 Port is Opened
+[2025-05-15 15:56:00.458] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 15:56:00.651] [Webview] WebView2 초기화 완료
+[2025-05-15 15:56:00.764] [Webview] load to http://localhost:8088
+[2025-05-15 15:56:01.280] [Webview] Add Option Complete
+[2025-05-15 15:56:01.281] [WebView] Clear Cache
+[2025-05-15 15:56:01.460] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:56:28.703] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:57:10.914] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.419] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.450] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.483] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.513] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.559] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.591] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.622] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.653] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.684] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.715] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.746] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.791] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.823] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.852] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.883] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.914] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:11.945] [AppToWeb] KEYPAD|Right
+[2025-05-15 15:57:17.233] [AppToWeb] KEYPAD|Left
+[2025-05-15 15:57:20.873] [AppToWeb] KEYPAD|Return
+[2025-05-15 15:57:25.441] [AppToWeb] KEYPAD|Return
+[2025-05-15 15:57:29.569] [AppToWeb] KEYPAD|Return
+[2025-05-15 15:57:29.733] [WebToApp] STATUS, STATUS
+[2025-05-15 15:57:33.052] [WebServer] Kill
+[2025-05-15 15:57:33.060] [UdpPlayer] Stop
+[2025-05-15 15:57:33.060] [------------------------------------------]
+[2025-05-15 15:58:00.024] [------------------------------------------]
+[2025-05-15 15:58:00.027] [UdpPlayer] Start
+[2025-05-15 15:58:00.040] [Setting File] Readed
+[2025-05-15 15:58:00.085] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 15:58:00.087] [Config File] Readed
+[2025-05-15 15:58:00.087] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:58:00.091] [WebServer] [Start]
+[2025-05-15 15:58:00.165] [Webview] Add to Control Complete
+[2025-05-15 15:58:00.181] [Display Scale] 1.75
+[2025-05-15 15:58:00.230] [Control Com Port] COM7 Port is Opened
+[2025-05-15 15:58:00.230] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 15:58:00.441] [Webview] WebView2 초기화 완료
+[2025-05-15 15:58:00.553] [Webview] load to http://localhost:8088
+[2025-05-15 15:58:01.066] [Webview] Add Option Complete
+[2025-05-15 15:58:01.067] [WebView] Clear Cache
+[2025-05-15 15:58:01.228] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:58:18.154] [AppToWeb] KEYPAD|h
+[2025-05-15 15:58:18.873] [AppToWeb] KEYPAD|h
+[2025-05-15 15:58:50.596] [------------------------------------------]
+[2025-05-15 15:58:50.600] [UdpPlayer] Start
+[2025-05-15 15:58:50.611] [Setting File] Readed
+[2025-05-15 15:58:50.632] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 15:58:50.654] [Config File] Readed
+[2025-05-15 15:58:50.655] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 15:58:50.663] [WebServer] [Start]
+[2025-05-15 15:58:50.742] [Webview] Add to Control Complete
+[2025-05-15 15:58:50.762] [Display Scale] 1.75
+[2025-05-15 15:58:50.821] [Control Com Port] COM7 Port is Opened
+[2025-05-15 15:58:50.821] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 15:58:50.989] [Webview] WebView2 초기화 완료
+[2025-05-15 15:58:51.104] [Webview] load to http://localhost:8088
+[2025-05-15 15:58:51.606] [Webview] Add Option Complete
+[2025-05-15 15:58:51.606] [WebView] Clear Cache
+[2025-05-15 15:58:51.752] [Webview] set zoom 0.285714285714286
+[2025-05-15 15:59:03.497] [WebServer] Kill
+[2025-05-15 15:59:03.503] [UdpPlayer] Stop
+[2025-05-15 15:59:03.503] [------------------------------------------]
+[2025-05-15 16:01:24.871] [------------------------------------------]
+[2025-05-15 16:01:24.875] [UdpPlayer] Start
+[2025-05-15 16:01:24.897] [Setting File] Readed
+[2025-05-15 16:01:24.966] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 16:01:24.972] [Config File] Readed
+[2025-05-15 16:01:24.972] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 16:01:24.976] [WebServer] [Start]
+[2025-05-15 16:01:25.939] [Webview] Add to Control Complete
+[2025-05-15 16:01:25.959] [Display Scale] 1.75
+[2025-05-15 16:01:25.999] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 16:01:25.999] [Control Com Port] COM7 Port is Opened
+[2025-05-15 16:01:26.162] [Webview] WebView2 초기화 완료
+[2025-05-15 16:01:26.274] [Webview] load to http://localhost:8088
+[2025-05-15 16:01:26.787] [Webview] Add Option Complete
+[2025-05-15 16:01:26.789] [WebView] Clear Cache
+[2025-05-15 16:01:26.956] [Webview] set zoom 0.285714285714286
+[2025-05-15 16:03:11.724] [------------------------------------------]
+[2025-05-15 16:03:11.728] [UdpPlayer] Start
+[2025-05-15 16:03:11.742] [Setting File] Readed
+[2025-05-15 16:03:11.763] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 16:03:11.765] [Config File] Readed
+[2025-05-15 16:03:11.765] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 16:03:11.774] [WebServer] [Start]
+[2025-05-15 16:03:11.851] [Webview] Add to Control Complete
+[2025-05-15 16:03:11.881] [Display Scale] 1.75
+[2025-05-15 16:03:11.930] [Control Com Port] COM7 Port is Opened
+[2025-05-15 16:03:11.930] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 16:03:12.129] [Webview] WebView2 초기화 완료
+[2025-05-15 16:03:12.243] [Webview] load to http://localhost:8088
+[2025-05-15 16:03:12.759] [Webview] Add Option Complete
+[2025-05-15 16:03:12.759] [WebView] Clear Cache
+[2025-05-15 16:03:12.925] [Webview] set zoom 0.285714285714286
+[2025-05-15 16:03:48.458] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:51.752] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:51.992] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:52.175] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:52.264] [AppToWeb] KEYPAD|2
+[2025-05-15 16:03:53.304] [AppToWeb] KEYPAD|2
+[2025-05-15 16:03:53.455] [AppToWeb] KEYPAD|3
+[2025-05-15 16:03:53.560] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:53.656] [AppToWeb] KEYPAD|2
+[2025-05-15 16:03:53.728] [AppToWeb] KEYPAD|3
+[2025-05-15 16:03:53.863] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:53.920] [AppToWeb] KEYPAD|2
+[2025-05-15 16:03:54.017] [AppToWeb] KEYPAD|3
+[2025-05-15 16:03:54.135] [AppToWeb] KEYPAD|1
+[2025-05-15 16:03:54.193] [AppToWeb] KEYPAD|2
+[2025-05-15 16:03:54.247] [AppToWeb] KEYPAD|3
+[2025-05-15 16:05:15.335] [------------------------------------------]
+[2025-05-15 16:05:15.338] [UdpPlayer] Start
+[2025-05-15 16:05:15.352] [Setting File] Readed
+[2025-05-15 16:05:15.370] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 16:05:15.385] [Config File] Readed
+[2025-05-15 16:05:15.386] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 16:05:15.394] [WebServer] [Start]
+[2025-05-15 16:05:15.463] [Webview] Add to Control Complete
+[2025-05-15 16:05:15.478] [Display Scale] 1.75
+[2025-05-15 16:05:15.526] [Control Com Port] COM7 Port is Opened
+[2025-05-15 16:05:15.526] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 16:05:15.757] [Webview] WebView2 초기화 완료
+[2025-05-15 16:05:15.868] [Webview] load to http://localhost:8088
+[2025-05-15 16:05:16.383] [Webview] Add Option Complete
+[2025-05-15 16:05:16.383] [WebView] Clear Cache
+[2025-05-15 16:05:16.541] [Webview] set zoom 0.285714285714286
+[2025-05-15 16:05:36.368] [AppToWeb] KEYPAD|1
+[2025-05-15 16:05:38.416] [AppToWeb] KEYPAD|3
+[2025-05-15 16:05:38.440] [AppToWeb] KEYPAD|2
+[2025-05-15 16:05:41.103] [AppToWeb] KEYPAD|Right
+[2025-05-15 16:05:42.008] [AppToWeb] KEYPAD|Right
+[2025-05-15 16:05:43.056] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:05:46.280] [AppToWeb] KEYPAD|Right
+[2025-05-15 16:05:46.784] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:05:51.000] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:05:57.648] [AppToWeb] KEYPAD|*
+[2025-05-15 16:06:05.680] [AppToWeb] KEYPAD|Right
+[2025-05-15 16:06:06.143] [AppToWeb] KEYPAD|Left
+[2025-05-15 16:06:07.224] [AppToWeb] KEYPAD|2
+[2025-05-15 16:06:08.329] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:06:11.385] [AppToWeb] KEYPAD|*
+[2025-05-15 16:06:13.152] [AppToWeb] KEYPAD|*
+[2025-05-15 16:06:16.408] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:06:17.548] [WebToApp] STATUS, STATUS
+[2025-05-15 16:06:27.944] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:07:03.217] [WebToApp] UDP_SEND, 102|4
+[2025-05-15 16:07:12.607] [AppToWeb] KEYPAD|1
+[2025-05-15 16:07:13.344] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:07:15.208] [AppToWeb] KEYPAD|*
+[2025-05-15 16:07:16.215] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:07:16.960] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:07:18.558] [WebToApp] STATUS, STATUS
+[2025-05-15 16:07:33.367] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:07:50.959] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:08:00.496] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:08:00.927] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:08:14.208] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:08:19.544] [WebToApp] STATUS, STATUS
+[2025-05-15 16:08:32.015] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:08:52.231] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:08:53.383] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:09:04.864] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:09:06.943] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:09:20.552] [WebToApp] STATUS, STATUS
+[2025-05-15 16:09:27.927] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:09:35.192] [AppToWeb] KEYPAD|Left
+[2025-05-15 16:09:36.087] [AppToWeb] KEYPAD|Right
+[2025-05-15 16:09:40.103] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:09:43.147] [WebServer] Kill
+[2025-05-15 16:09:43.151] [UdpPlayer] Stop
+[2025-05-15 16:09:43.151] [------------------------------------------]
+[2025-05-15 16:13:00.245] [------------------------------------------]
+[2025-05-15 16:13:00.248] [UdpPlayer] Start
+[2025-05-15 16:13:00.265] [Setting File] Readed
+[2025-05-15 16:13:00.283] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 16:13:00.322] [Config File] Readed
+[2025-05-15 16:13:00.322] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 16:13:00.326] [WebServer] [Start]
+[2025-05-15 16:13:00.990] [Webview] Add to Control Complete
+[2025-05-15 16:13:01.010] [Display Scale] 1.75
+[2025-05-15 16:13:01.043] [Control Com Port] COM7 Port is Opened
+[2025-05-15 16:13:01.045] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 16:13:01.213] [Webview] WebView2 초기화 완료
+[2025-05-15 16:13:01.323] [Webview] load to http://localhost:8088
+[2025-05-15 16:13:01.836] [Webview] Add Option Complete
+[2025-05-15 16:13:01.837] [WebView] Clear Cache
+[2025-05-15 16:13:01.991] [Webview] set zoom 0.285714285714286
+[2025-05-15 16:14:02.997] [WebToApp] STATUS, STATUS
+[2025-05-15 16:15:04.004] [WebToApp] STATUS, STATUS
+[2025-05-15 16:16:04.996] [WebToApp] STATUS, STATUS
+[2025-05-15 16:17:05.998] [WebToApp] STATUS, STATUS
+[2025-05-15 16:18:06.997] [WebToApp] STATUS, STATUS
+[2025-05-15 16:19:07.995] [WebToApp] STATUS, STATUS
+[2025-05-15 16:20:09.007] [WebToApp] STATUS, STATUS
+[2025-05-15 16:21:09.994] [WebToApp] STATUS, STATUS
+[2025-05-15 16:22:11.001] [WebToApp] STATUS, STATUS
+[2025-05-15 16:23:11.993] [WebToApp] STATUS, STATUS
+[2025-05-15 16:24:12.996] [WebToApp] STATUS, STATUS
+[2025-05-15 16:25:13.995] [WebToApp] STATUS, STATUS
+[2025-05-15 16:26:15.004] [WebToApp] STATUS, STATUS
+[2025-05-15 16:27:16.004] [WebToApp] STATUS, STATUS
+[2025-05-15 16:28:16.993] [WebToApp] STATUS, STATUS
+[2025-05-15 16:29:17.997] [WebToApp] STATUS, STATUS
+[2025-05-15 16:29:21.730] [AppToWeb] KEYPAD|2
+[2025-05-15 16:29:23.325] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:29:25.933] [AppToWeb] KEYPAD|5
+[2025-05-15 16:29:27.301] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:29:32.613] [AppToWeb] KEYPAD|*
+[2025-05-15 16:29:47.085] [AppToWeb] KEYPAD|*
+[2025-05-15 16:29:50.661] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:29:53.597] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:29:53.598] [WebToApp] UDP_SEND, 100|1^4
+[2025-05-15 16:30:04.037] [WebToApp] UDP_SEND, 101|1^3
+[2025-05-15 16:30:17.108] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:30:19.006] [WebToApp] STATUS, STATUS
+[2025-05-15 16:30:21.396] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:30:43.637] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:30:47.114] [WebServer] Kill
+[2025-05-15 16:30:47.127] [UdpPlayer] Stop
+[2025-05-15 16:30:47.128] [------------------------------------------]
+[2025-05-15 16:56:35.538] [------------------------------------------]
+[2025-05-15 16:56:35.541] [UdpPlayer] Start
+[2025-05-15 16:56:35.553] [Setting File] Readed
+[2025-05-15 16:56:35.576] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 16:56:35.580] [Config File] Readed
+[2025-05-15 16:56:35.581] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 16:56:35.584] [WebServer] [Start]
+[2025-05-15 16:56:35.898] [Webview] Add to Control Complete
+[2025-05-15 16:56:35.935] [Display Scale] 1.75
+[2025-05-15 16:56:35.987] [Control Com Port] COM7 Port is Opened
+[2025-05-15 16:56:35.987] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 16:56:36.199] [Webview] WebView2 초기화 완료
+[2025-05-15 16:56:36.307] [Webview] load to http://localhost:8088
+[2025-05-15 16:56:36.815] [Webview] Add Option Complete
+[2025-05-15 16:56:36.816] [WebView] Clear Cache
+[2025-05-15 16:56:36.974] [Webview] set zoom 0.285714285714286
+[2025-05-15 16:57:37.990] [WebToApp] STATUS, STATUS
+[2025-05-15 16:58:38.978] [WebToApp] STATUS, STATUS
+[2025-05-15 16:59:13.234] [AppToWeb] KEYPAD|Back
+[2025-05-15 16:59:13.393] [AppToWeb] KEYPAD|Back
+[2025-05-15 16:59:15.401] [AppToWeb] KEYPAD|Back
+[2025-05-15 16:59:15.585] [AppToWeb] KEYPAD|Back
+[2025-05-15 16:59:24.250] [AppToWeb] KEYPAD|Return
+[2025-05-15 16:59:34.810] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:35.001] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:35.208] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:35.425] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:35.657] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:35.905] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:36.137] [AppToWeb] KEYPAD|1
+[2025-05-15 16:59:40.242] [WebToApp] STATUS, STATUS
+[2025-05-15 16:59:41.172] [WebServer] Kill
+[2025-05-15 16:59:41.176] [UdpPlayer] Stop
+[2025-05-15 16:59:41.176] [------------------------------------------]
+[2025-05-15 17:01:25.285] [------------------------------------------]
+[2025-05-15 17:01:25.288] [UdpPlayer] Start
+[2025-05-15 17:01:25.298] [Setting File] Readed
+[2025-05-15 17:01:25.361] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 17:01:25.362] [Config File] Readed
+[2025-05-15 17:01:25.362] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 17:01:25.366] [WebServer] [Start]
+[2025-05-15 17:01:25.440] [Webview] Add to Control Complete
+[2025-05-15 17:01:25.461] [Display Scale] 1.75
+[2025-05-15 17:01:25.514] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 17:01:25.514] [Control Com Port] COM7 Port is Opened
+[2025-05-15 17:01:25.730] [Webview] WebView2 초기화 완료
+[2025-05-15 17:01:25.834] [Webview] load to http://localhost:8088
+[2025-05-15 17:01:26.348] [Webview] Add Option Complete
+[2025-05-15 17:01:26.349] [WebView] Clear Cache
+[2025-05-15 17:01:26.506] [Webview] set zoom 0.285714285714286
+[2025-05-15 17:01:26.926] [WebServer] Kill
+[2025-05-15 17:01:26.933] [UdpPlayer] Stop
+[2025-05-15 17:01:26.933] [------------------------------------------]

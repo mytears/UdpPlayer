@@ -397,5 +397,6 @@ input:focus {
 }
 
 .btn_outline {
+    position: relative;
     outline: 20px solid #FF0000;
 }

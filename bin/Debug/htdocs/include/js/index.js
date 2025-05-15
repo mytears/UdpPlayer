@@ -21,9 +21,12 @@ let m_item_list = ["아이스 아메리카노", "아메리카노", "오렌지 �
 let m_item_img_list = ["images/img_ice_coffee.png", "images/img_hot_coffee.png", "images/img_orange_jucie.png", "images/img_grape_jucie.png", "images/img_water.png"];
 let m_curr_wait = 100;
 let m_reset_timer;
+let m_sound_timer_list = [9800, 9801, 9802, 9803, 9804, 9805, 9806, 9807, 9808];
+let m_sound_cart_timers = [];
 let m_curr_playing = null;
-
+let m_keypad_mode = "top";
 let m_top_menu_num = 0;
+let m_selected_menu_num = 0;
 
 function setInit() {
 
@@ -79,12 +82,7 @@ function setInit() {
 
     $(".btn_prev").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickPrev(this);
-    });
-
-    $(".home_btn").on("touchstart mousedown", function (e) {
-        e.preventDefault();
-        onClickHomeBtn(this);
+        onClickBtnPrev(this);
     });
 
     $(".close_btn").on("touchstart mousedown", function (e) {
@@ -94,12 +92,12 @@ function setInit() {
 
     $(".btn_pay").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickPayBtn(this);
+        onClickBtnPlay(this);
     });
 
     $(".btn_cancel").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickCancelBtn(this);
+        onClickBtnCancel(this);
     });
 
     $(".popupWin1 .btn_confirm").on("touchstart mousedown", function (e) {
@@ -151,7 +149,7 @@ function setMainInterval() {
     time_gap = time_curr - m_time_last;
     time_gap = Math.floor(time_gap / 1000);
     if (time_gap > 180) {
-        if ($(".page_00").css("display") == "none") {
+        if ($(".main_page").css("display") == "none") {
             setMainReset();
         }
     }
@@ -199,7 +197,10 @@ function setInitSetting() {
 }
 
 function setMainReset() {
+    m_selected_menu_num = 0;
     m_top_menu_num = 0;
+    $('.menuType li').removeClass('btn_outline');
+    $('.menuList li').removeClass('btn_outline');
     $(".popup").hide();
     $(".sub_page").hide();
     $(".main_page").show();
@@ -215,6 +216,7 @@ function setMainReset() {
 }
 
 function onClickTopMenu(_obj) {
+    clearAllSoundTimeout();
     $(".top_menu").removeClass("active");
     let t_code = $(_obj).attr("code");
     m_cate_code = t_code;
@@ -223,6 +225,7 @@ function onClickTopMenu(_obj) {
 }
 
 function onClickBtnMode(_obj) {
+    clearAllSoundTimeout();
     let t_code = $(_obj).attr("code");
     m_mode = t_code;
     switch (m_mode) {
@@ -304,6 +307,7 @@ function setBigToggle(_bool) {
 
 
 function onClickBtnVoice(_obj) {
+    clearAllSoundTimeout();
     if ($(_obj).hasClass("active") == true) {
         setVoiceToggle(false);
         //음성 끄기
@@ -314,6 +318,7 @@ function onClickBtnVoice(_obj) {
 }
 
 function setVoiceToggle(_bool) {
+    console.log("setVoiceToggle", _bool);
     if (_bool == false) {
         $(".btn_voice").removeClass("active");
         //음성 끄기
@@ -322,10 +327,16 @@ function setVoiceToggle(_bool) {
         $(".btn_voice").addClass("active");
         //음성 켜기
         setSoundPlay("voice/voice_common_07.wav");
+        if ($(".main_page").css("display") != "none") {
+            m_sound_timer_list[5] = setTimeout(setSoundPlay, 2500, "voice/voice_common_02.wav");
+        } else if ($(".sub_page").css("display") != "none") {
+            m_sound_timer_list[5] = setTimeout(setItemListCheck, 2500);
+        }
     }
 }
 
 function onClickItem(_obj) {
+    clearAllSoundTimeout();
     if (m_cart_list.length >= 4) {
         Swal.fire({
             icon: 'error',
@@ -374,6 +385,7 @@ function onClickItem(_obj) {
 }
 
 function onClickItemPlus(_obj) {
+    clearAllSoundTimeout();
     let $box = $(_obj).closest('.cart_box');
     let item = $box.attr('item');
     if (m_cart_list.length >= 4) {
@@ -392,6 +404,7 @@ function onClickItemPlus(_obj) {
 }
 
 function onClickItemMinus(_obj) {
+    clearAllSoundTimeout();
     let $box = $(_obj).closest('.cart_box');
     let item = $box.attr('item');
 
@@ -407,6 +420,7 @@ function onClickItemMinus(_obj) {
 }
 
 function onClickItemDel(_obj) {
+    clearAllSoundTimeout();
     let $box = $(_obj).closest('.cart_box');
     if ($box.length == 0) {
         $box = $(_obj).closest('.order_box');
@@ -453,6 +467,7 @@ function setCartSort() {
     $('.cart_box').hide();
     $('.order_box').hide();
 
+    m_cart_index_list = [];
     // 3. item_counts에서 등장 순서대로 cart_box 채우기
     let cart_index = 0;
     for (let i = 0; i < m_cart_list.length; i++) {
@@ -480,21 +495,29 @@ function setCartSort() {
 
         // 이 상품은 이미 처리했으니 다시 넣지 않게 false 처리
         item_counts[code] = false;
+        m_cart_index_list.push(code);
         cart_index++;
     }
+
 }
 
 function onClickOrder(_obj) {
     if ($(_obj).css("opacity") == "1") {
+        clearAllSoundTimeout();
         $(".sub_page").show();
         $(".sub_order").show();
         $(".main_page").hide();
         $(".main_order").hide();
+
+        setItemListCheck();
     }
 }
 
-function onClickPrev(_obj) {
+function onClickBtnPrev(_obj) {
     if ($(_obj).css("opacity") == "1") {
+        clearAllSoundTimeout();
+        $('.menuType li').removeClass('btn_outline');
+        $('.menuList li').removeClass('btn_outline');
         $(".sub_page").hide();
         $(".sub_order").hide();
         $(".main_page").show();
@@ -514,7 +537,13 @@ function setShowPopup(_num) {
             $(".popupWin2").show();
             m_curr_wait += 1;
             $(".popupWin2 .num").html(m_curr_wait.toString());
-            m_reset_timer = setTimeout(setMainReset, 3000);
+            let t_str = "";
+            for (var i = 0; i < m_cart_index_list.length; i += 1) {
+                t_str += m_cart_index_list[i] + "^";
+            }
+            t_str = t_str.substr(0, t_str.length - 1);
+            setCallWebToApp('UDP_SEND', m_curr_wait + "|" + t_str);
+            m_reset_timer = setTimeout(setMainReset, 3500);
             break;
     }
     $(".popup").show();
@@ -536,10 +565,6 @@ function onClickUdpSendBtn(_obj) {
     setCallWebToApp('UDP_SEND', 'MSG_UDP_SEND');
 }
 
-function onClickPrevBtn(_obj) {}
-
-function onClickNextBtn(_obj) {}
-
 function setPrevNextBtnState(t_sub, t_max) {
     //console.log("setPrevNextBtnState", t_sub, t_max);
     if (t_sub == 0) {
@@ -555,23 +580,23 @@ function setPrevNextBtnState(t_sub, t_max) {
     }
 }
 
-function onClickHomeBtn(_obj) {
-    setMainReset();
-}
-
-function onClickPayBtn(_obj) {
+function onClickBtnPlay(_obj) {
+    clearAllSoundTimeout();
     setShowPopup("0");
 }
 
-function onClickCancelBtn(_obj) {
+function onClickBtnCancel(_obj) {
+    clearAllSoundTimeout();
     setHidePopup();
 }
 
 function onClickConfirmBtn(_obj) {
+    clearAllSoundTimeout();
     setShowPopup("1");
 }
 
 function onClickFinalConfirmBtn(_obj) {
+    clearAllSoundTimeout();
     clearTimeout(m_reset_timer);
     setMainReset();
 }
@@ -581,6 +606,7 @@ function onClickPopupBtn(_obj) {
 }
 
 function onClickCloseBtn(_obj) {
+    clearAllSoundTimeout();
     setHidePopup();
 }
 
@@ -601,7 +627,6 @@ function setHide(_hide) {
 }
 
 function setSoundPlay(_sound) {
-    console.log("setSoundPlay", _sound);
     if (m_curr_playing) {
         m_curr_playing.pause();
         m_curr_playing.currentTime = 0;
@@ -609,30 +634,99 @@ function setSoundPlay(_sound) {
     } else {
         m_curr_playing = new Audio(_sound);
     }
+    console.log("setSoundPlay", m_curr_playing.src);
     m_curr_playing.play();
 }
 
+function setSoundReplay() {
+    console.log("setSoundReplay", m_curr_playing.src);
+    if (m_curr_playing) {
+        m_curr_playing.pause();
+        m_curr_playing.currentTime = 0;
+        m_curr_playing.play();
+    }
+}
 
+function setItemListCheck() {
+    m_keypad_mode = "";
 
+    if ($(".btn_voice").hasClass("active") == false) {
+        return;
+    }
+    console.log(m_cart_index_list.length);
+    for (i = 0; i < m_cart_index_list.length; i += 1) {
+        m_sound_timer_list[i] = setTimeout(setSoundPlay, 1300 * i, "voice/voice_cart_menu_0" + (m_cart_index_list[i] + 1) + ".wav");
+    }
+    m_sound_timer_list[6] = setTimeout(setSoundPlay, 1300 * m_cart_index_list.length, "voice/voice_common_04.wav");
+}
 
+function clearAllSoundTimeout() {
+    clearTimeout(m_sound_timer_list[0]);
+    clearTimeout(m_sound_timer_list[1]);
+    clearTimeout(m_sound_timer_list[2]);
+    clearTimeout(m_sound_timer_list[3]);
+    clearTimeout(m_sound_timer_list[4]);
+    clearTimeout(m_sound_timer_list[5]);
+    clearTimeout(m_sound_timer_list[6]);
+}
 
 
 function onRecvKeypad(_cmd) {
+    if ($(".btn_voice").hasClass("active") == false) {
+        return;
+    }
     console.log(_cmd);
-
+    clearAllSoundTimeout();
     if (_cmd == "Left" || _cmd == "Right" || _cmd == "Up" || _cmd == "Down") {
+        if ($(".main_page").css("display") == "none") {
+            return;
+        }
+        m_keypad_mode = "top";
         setArrowKeypad(_cmd);
     } else if (_cmd == "*") {
-
+        if ($(".main_page").css("display") != "none") {
+            onClickOrder($(".btn_order"));
+        }
     } else if (_cmd == "#") {
-
+        setSoundReplay();
     } else if (_cmd == "h") {
         setMainReset();
     } else if (_cmd == "Back") {
-
+        if ($(".sub_page").css("display") != "none") {
+            if ($(".popup").css("display") == "none") {
+                onClickBtnPrev($(".btn_prev"));
+                setSoundPlay("voice/voice_common_02.wav");
+            } else {
+                onClickBtnCancel($(".btn_cancel"));
+                setItemListCheck();
+            }
+        }
     } else if (_cmd == "Return") {
-        setSelectEvent();
-    } else {}
+        if ($(".main_page").css("display") != "none") {
+            setSelectEvent();
+        } else if ($(".sub_page").css("display") != "none") {
+            if ($(".popup").css("display") == "none") {
+                onClickBtnPlay($(".btn_pay"));
+                setSoundPlay("voice/voice_common_05.wav");
+            } else {
+                if ($(".popupWin1").css("display") != "none") {
+                    onClickConfirmBtn($(".popupWin1 .btn_confirm"));
+                    setSoundPlay("voice/voice_common_06.wav");
+                } else {
+                    onClickFinalConfirmBtn($(".popupWin2 .btn_confirm"));
+                }
+            }
+        }
+    } else {
+        if (parseInt(_cmd) < 6) {
+            if ($(".main_page").css("display") == "none") {
+                return;
+            }
+            m_keypad_mode = "item";
+            m_selected_menu_num = parseInt(_cmd);
+            setItemOutline(m_selected_menu_num);
+        }
+    }
 }
 
 function setArrowKeypad(_cmd) {
@@ -642,7 +736,7 @@ function setArrowKeypad(_cmd) {
             m_top_menu_num -= 1;
         }
         setMenuOutline(m_top_menu_num);
-    } else if (_cmd == "Right") {        
+    } else if (_cmd == "Right") {
         if (m_top_menu_num < 5) {
             m_top_menu_num += 1;
         }
@@ -658,18 +752,27 @@ function setMenuOutline(_num) {
     console.log("setMenuOutline", _num);
     $('.menuType li').removeClass('btn_outline');
     $('.menuType li:nth-child(' + _num + ')').addClass('btn_outline');
-    setSoundPlay("voice/voice_top_0" + (parseInt(_num)) + ".wav");
+    setSoundPlay("voice/voice_top_0" + _num + ".wav");
+}
+
+function setItemOutline(_num) {
+    console.log("setItemOutline", _num);
+    $('.menuList li').removeClass('btn_outline');
+    $('.menuList li:nth-child(' + _num + ')').addClass('btn_outline');
+    setSoundPlay("voice/voice_menu_0" + _num + ".wav");
 }
 
 function setSelectEvent() {
-    if (m_curr_document == null) {
-        if (m_chk_page_num > 0) {
-            const t_btn = $(`.middle_nav li[code="${m_chk_page_num}"]`);
-            test_startTime = Date.now();
-            onClickMainMenu(t_btn);
+    if (m_keypad_mode == "top") {
+        if (m_top_menu_num != 0) {
+            onClickTopMenu(".menuType li:nth-child(" + m_top_menu_num + ")");
+            setSoundPlay("voice/voice_common_02.wav");
         }
-    } else {
-        m_curr_document.setSelectEvent();
+    } else if (m_keypad_mode == "item") {
+        if (m_selected_menu_num != 0) {
+            onClickItem(".menuList li:nth-child(" + m_selected_menu_num + ")");
+            setSoundPlay("voice/voice_select_0" + m_selected_menu_num + ".wav");
+        }
     }
 }
 
@@ -693,7 +796,15 @@ function onClickBtnHome(_obj) {
 
 
 
-
+function onRecvHwBtn(_cmd) {
+    console.log("onRecvHwBtn", _cmd);
+    if ($(".btn_voice").hasClass("active") == true) {
+        return;
+    }
+    if (_cmd == "bon") {
+        setVoiceToggle("true");
+    }
+}
 
 function setInitFsCommand() {
     if (window.chrome.webview) {
@@ -711,6 +822,11 @@ function setCommand(_str) {
     let t_str = "";
     console.log("setCommand", _str);
     if (cmd == "RECV") {
-        $(".recv_txt").html(arg);
+        //$(".recv_txt").html(arg);
+    } else if (cmd == "KEYPAD") {
+        onRecvKeypad(arg);
+        //$(".recv_txt").html(arg);
+    } else if (_str == "BUTTON|ON") {
+        onRecvHwBtn("bon");
     }
 }

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.IO.Ports;
 
 namespace UdpPlayer
 {
@@ -48,6 +49,7 @@ namespace UdpPlayer
             MDT_DEFAULT = MDT_EFFECTIVE_DPI
         }
 
+        private string[] m_hook_check_array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "#", "h", "Up", "Down", "Left", "Right", "VolumeUp", "VolumeDown", "ControlButton" };
 
         public Dictionary<string, Dictionary<string, string>> m_config_ini_data { get; private set; }
         public Dictionary<string, Dictionary<string, string>> m_setting_ini_data { get; private set; }
@@ -82,9 +84,40 @@ namespace UdpPlayer
         private bool m_mouse_show = true;
 
         private System.Threading.Timer m_mostTopTimer;
+        private System.Threading.Timer m_control_receiveTimer;
+        private System.Threading.Timer m_sensor_receiveTimer;
+        private System.Threading.Timer m_serialTimer;
 
         static UdpClient m_main_udp_client;
 
+        private string m_control_com_port = "";
+        private int m_control_com_rate;
+        private string m_sensor_com_port = "";
+        private int m_sensor_com_rate;
+        private StringBuilder receivedControlData = new StringBuilder();
+        private StringBuilder receivedSensorTempData = new StringBuilder();
+        private string receivedSensorData = "";
+        static int consecutive59Count = 0; // `59` 연속 카운트
+        static bool isAppending = false; // 현재 데이터를 추가 중인지 여부
+
+        private int m_serial_timer_chk = 0;
+        private bool m_serial_timer_bool = false;
+
+        private int m_sensor_dist = 9999;
+        private int m_sensor_active_cnt = 0;
+        private int m_sensor_inactive_cnt = 0;
+        private int m_sensor_max = 10;
+
+        private Boolean m_khook_mode = false;
+        private Boolean m_button_state = false;
+        private Boolean m_sensor_is_first = true;
+        private Boolean m_sensor_active = false;
+
+        private bool m_webview_main_loaded = false;
+
+
+        private HookManager hookManager = new HookManager();
+        public static Form1 m_form { get; private set; }
 
         public Form1()
         {
@@ -92,6 +125,9 @@ namespace UdpPlayer
             {
                 //윈도우 디스플레이 배율을 확인하기 위한 함수
                 SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+
+                m_form = this;
+
 
                 //로그 작성을 위한 함수
                 CreateLogFile();
@@ -103,6 +139,26 @@ namespace UdpPlayer
 
                 SetLoadSettingIni();
                 GetDisplayScale();
+
+
+
+                //프로세스 종료시 웹서버가 혹시 켜져있으면 죽이기 위한 함수
+                string processName = "SysWebServer"; // 대상 프로세스의 이름
+                AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) =>
+                {
+                    hookManager.SetUnHook();
+                    // 대상 프로세스 종료
+                    Process[] processes = Process.GetProcessesByName(processName);
+                    foreach (Process process in processes)
+                    {
+                        SetLog("[WebServer] Kill");
+                        process.Kill();
+                    }
+                    SetLog("[" + Process.GetCurrentProcess().ProcessName + "] Stop");
+                    SetLog("[------------------------------------------]");
+                };
+
+
             }
             catch (Exception exception)
             {
@@ -159,7 +215,7 @@ namespace UdpPlayer
             {
                 m_main_udp_client.Send(sendBytes, sendBytes.Length, broadcastEP);
                 Console.WriteLine($"브로드캐스트 보냄: \"{message}\" → {broadcastEP}");
-                SetCallAppToWeb("RECV|" + message+"^"+ broadcastEP);
+                SetCallAppToWeb("RECV|" + message + "^" + broadcastEP);
             }
             catch (Exception ex)
             {
@@ -212,6 +268,18 @@ namespace UdpPlayer
                     }
                     try
                     {
+                        m_khook_mode = Convert.ToBoolean(m_setting_ini_data["player"]["kHook"]);
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Setting] kHook 없음 > " + exception.Message);
+                    }
+                    if (m_khook_mode == true)
+                    {
+                        hookManager.SetHook();
+                    }
+                    try
+                    {
                         m_udp_mode = Convert.ToString(m_setting_ini_data["udp"]["mode"]);
                     }
                     catch (Exception exception)
@@ -226,6 +294,64 @@ namespace UdpPlayer
                     {
                         SetLog("[Setting] udp port 없음 > " + exception.Message);
                     }
+
+                    try
+                    {
+                        m_control_com_port = Convert.ToString(m_setting_ini_data["controlBoard"]["port"]);
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Setting] controlBoard port 없음 > " + exception.Message);
+                    }
+                    try
+                    {
+                        m_sensor_com_port = Convert.ToString(m_setting_ini_data["sensor"]["port"]);
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Setting] sensor port 없음 > " + exception.Message);
+                    }
+                    try
+                    {
+                        m_sensor_dist = Convert.ToInt32(m_setting_ini_data["sensor"]["dist"]);
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Setting] sensor dist 없음 > " + exception.Message);
+                    }
+                    try
+                    {
+                        m_sensor_max = Convert.ToInt32(m_setting_ini_data["sensor"]["max"]);
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Setting] sensor max 없음 > " + exception.Message);
+                    }
+                    try
+                    {
+                        m_sensor_com_rate = Convert.ToInt32(m_setting_ini_data["sensor"]["rate"]);
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Setting] sensor rate 없음 > " + exception.Message);
+                    }
+                    if (m_setting_ini_data["controlBoard"]["rate"] == "")
+                    {
+                        m_control_com_rate = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            m_control_com_rate = Convert.ToInt32(m_setting_ini_data["controlBoard"]["rate"]);
+                        }
+                        catch (Exception exception)
+                        {
+                            SetLog("[Setting] controlBoard rate 없음 > " + exception.Message);
+                        }
+                    }
+                    _ = InitializeControlComport();
+                    _ = InitializeSensorComport();
                 }
             }
             catch (Exception exception)
@@ -236,6 +362,337 @@ namespace UdpPlayer
             InitializeUdpClient();
 
             SetLoadConfigIni();
+        }
+
+        private async Task InitializeControlComport()
+        {
+            try
+            {
+                if (serialPort_control.IsOpen)
+                {
+                    serialPort_control.Close();
+                    Console.WriteLine("CLOSE");
+                }
+
+                if (!serialPort_control.IsOpen)
+                {
+                    serialPort_control.PortName = m_control_com_port;
+                    serialPort_control.BaudRate = m_control_com_rate;
+                    serialPort_control.DataBits = 8;
+                    serialPort_control.StopBits = StopBits.One;
+                    serialPort_control.Parity = Parity.None;
+                    serialPort_control.DataReceived += new SerialDataReceivedEventHandler(serialPort_control_DataReceived);
+
+                    serialPort_control.ReadTimeout = 1000; // 1초 타임아웃 설정 예시
+                    serialPort_control.WriteTimeout = 1000; // 1초 타임아웃 설정 예시
+
+                    try
+                    {
+                        var openTask = Task.Run(() =>
+                        {
+                            try
+                            {
+                                serialPort_control.Open();
+                            }
+                            catch (IOException exception)
+                            {
+                                SetLog("[Exception] <" + System.Reflection.MethodBase.GetCurrentMethod().Name + "> " + exception.Message);
+                                // 비동기 작업 내부에서 발생한 예외 처리
+                                //throw new IOException("Failed to open control serial port.", exception.Message);
+                            }
+                        });
+
+                        if (await Task.WhenAny(openTask, Task.Delay(5000)) == openTask)
+                        {
+                            // 시리얼 포트를 성공적으로 열었을 때
+                            SetLog("[Control Com Port] " + m_control_com_port + " Port is Opened");
+                            Console.WriteLine("포트 오픈!");
+                        }
+                        else
+                        {
+                            // 타임아웃 발생 시
+                            SetLog("[Control Com Port] [Error] " + "[" + m_control_com_port + "] " + "Opening port timed out.");
+                            Console.WriteLine("포트 열기 타임아웃.");
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Control Com Port] [Error] " + "[" + m_control_com_port + "] " + exception.ToString());
+                        Console.WriteLine(exception.ToString());
+                    }
+                }
+                else
+                {
+                    SetLog("[Control Com Port] [Error] " + "[" + m_control_com_port + "] " + "Port is Busy");
+                    Console.WriteLine("포트가 이미 열려 있습니다.");
+                }
+            }
+            catch (Exception exception)
+            {
+                SetLog("[Exception] <" + System.Reflection.MethodBase.GetCurrentMethod().Name + "> " + exception.Message);
+            }
+        }
+
+        //컴포트로부터 값을 넘겨받기 위한 함수
+        private void serialPort_control_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            // 타이머가 이미 동작 중이면 중지합니다.
+            m_control_receiveTimer?.Dispose();
+            // 새 타이머를 생성하여 수신을 기다립니다.
+            m_control_receiveTimer = new System.Threading.Timer(Process_control_receivedData, null, 50, Timeout.Infinite);
+
+            while (serialPort_control.BytesToRead > 0)
+            {
+                receivedControlData.AppendFormat("{0:X2} ", (byte)serialPort_control.ReadByte());
+            }
+        }
+        private void Process_control_receivedData(object state)
+        {
+            try
+            {
+                if (receivedControlData.Length > 0)
+                {
+                    string recvData = receivedControlData.ToString().Trim();
+                    Console.WriteLine("RECV Control] " + recvData);
+                    receivedControlData.Clear(); // 버퍼를 비웁니다.
+                    //23 40 30 31 21 21
+                    string[] t_list = recvData.Split(' ');
+
+                    //Console.WriteLine("m_headset_state : " + m_headset_state);
+                    if (t_list[2] == "30")
+                    {
+                        //이어폰 빠짐
+                    }
+                    else if (t_list[2] == "31")
+                    {
+                        //이어폰 꽂힘
+                    }
+
+                    if (t_list[3] == "30")
+                    {
+                        //버튼 뗌
+                    }
+                    else if (t_list[3] == "31")
+                    {
+                        setCallAppToWeb("BUTTON|ON");
+                        //버튼 눌림
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.ToString());
+            }
+        }
+
+        private async Task InitializeSensorComport()
+        {
+            try
+            {
+                if (serialPort_sensor.IsOpen)
+                {
+                    serialPort_sensor.Close();
+                    Console.WriteLine("CLOSE");
+                }
+
+                if (!serialPort_sensor.IsOpen)
+                {
+                    serialPort_sensor.PortName = m_sensor_com_port;
+                    serialPort_sensor.BaudRate = m_sensor_com_rate;
+                    serialPort_sensor.DataBits = 8;
+                    serialPort_sensor.StopBits = StopBits.One;
+                    serialPort_sensor.Parity = Parity.None;
+                    serialPort_sensor.DataReceived += new SerialDataReceivedEventHandler(serialPort_sensor_DataReceived);
+
+                    serialPort_sensor.ReadTimeout = 1000; // 1초 타임아웃 설정 예시
+                    serialPort_sensor.WriteTimeout = 1000; // 1초 타임아웃 설정 예시
+
+                    // 타이머가 이미 동작 중이면 중지합니다.
+                    m_sensor_receiveTimer?.Dispose();
+                    // 새 타이머를 생성하여 수신을 기다립니다.
+                    m_sensor_receiveTimer = new System.Threading.Timer(Process_sensor_receivedData, null, 0, 100);
+
+                    try
+                    {
+                        var openTask = Task.Run(() =>
+                        {
+                            try
+                            {
+                                serialPort_sensor.Open();
+                            }
+                            catch (IOException exception)
+                            {
+                                SetLog("[Exception] <" + System.Reflection.MethodBase.GetCurrentMethod().Name + "> " + exception.Message);
+                                // 비동기 작업 내부에서 발생한 예외 처리
+                                //throw new IOException("Failed to open sensor serial port.", exception.Message);
+                            }
+                        });
+
+                        if (await Task.WhenAny(openTask, Task.Delay(5000)) == openTask)
+                        {
+                            // 시리얼 포트를 성공적으로 열었을 때
+                            SetLog("[Sensor Com Port] " + m_sensor_com_port + " Port is Opened");
+                            Console.WriteLine("포트 오픈!");
+                        }
+                        else
+                        {
+                            // 타임아웃 발생 시
+                            SetLog("[Sensor Com Port] [Error] " + "[" + m_sensor_com_port + "] " + "Opening port timed out.");
+                            Console.WriteLine("포트 열기 타임아웃.");
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        SetLog("[Sensor Com Port] [Error] " + "[" + m_sensor_com_port + "] " + exception.ToString());
+                        Console.WriteLine(exception.ToString());
+                    }
+                }
+                else
+                {
+                    SetLog("[Sensor Com Port] [Error] " + "[" + m_sensor_com_port + "] " + "Port is Busy");
+                    Console.WriteLine("포트가 이미 열려 있습니다.");
+                }
+            }
+            catch (Exception exception)
+            {
+                SetLog("[Exception] <" + System.Reflection.MethodBase.GetCurrentMethod().Name + "> " + exception.Message);
+            }
+        }
+        private void serialPort_sensor_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+
+            while (serialPort_sensor.BytesToRead > 0)
+            {
+                // 한 바이트씩 읽고 16진수 형식으로 변환
+                string hexData = serialPort_sensor.ReadByte().ToString("X2");
+
+                if (hexData == "59")
+                {
+                    consecutive59Count++;
+
+                    // 첫 번째 `5959` 감지로 데이터 수신 시작
+                    if (consecutive59Count == 2 && !isAppending)
+                    {
+                        isAppending = true;
+                        receivedSensorTempData.Clear(); // 데이터를 새로 수신하기 시작
+                        receivedSensorTempData.Append("5959"); // 첫 `5959` 추가
+                    }
+                    // 이미 데이터를 추가 중일 때, 새 `5959`가 감지되면 기존 데이터 초기화 후 새로 추가
+                    else if (consecutive59Count == 2 && isAppending)
+                    {
+                        receivedSensorTempData.Clear();
+                        receivedSensorTempData.Append("5959");
+                    }
+                }
+                else
+                {
+                    // `59` 연속이 끊겼을 때 처리
+                    consecutive59Count = 0;
+
+                    // `5959` 패턴을 수신 중인 경우만 데이터 추가
+                    if (isAppending)
+                    {
+                        receivedSensorTempData.Append(hexData);
+                    }
+                }
+                if (receivedSensorTempData.Length == 18)
+                {
+                    //Console.WriteLine(receivedSensorTempData.Length);
+                    receivedSensorData = receivedSensorTempData.ToString();
+                    //Console.WriteLine("현재 데이터 (16진수): " + receivedSensorData.ToString());
+                }
+            }
+            //Console.WriteLine("1> "+receivedSensorTempData.ToString().Trim());
+        }
+        private void Process_sensor_receivedData(object state)
+        {
+            try
+            {
+                if (convSensorData(receivedSensorData) == "")
+                {
+                    return;
+                }
+                int t_dist = Convert.ToInt32(convSensorData(receivedSensorData));
+                SetSensorControl(t_dist);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.ToString());
+            }
+        }
+        private string convSensorData(string _str)
+        {
+            string t_str = "";
+            if (_str.Length == 18 && _str.Substring(0, 4) == "5959")
+            {
+                string t_dist_low = _str.Substring(4, 2);
+                string t_dist_high = _str.Substring(6, 2);
+                string t_strength_low = _str.Substring(6, 2);
+                string t_strength_high = _str.Substring(10, 2);
+                string t_temp_low = _str.Substring(12, 2);
+                string t_temp_high = _str.Substring(14, 2);
+
+                int t_low = Convert.ToInt32(t_dist_low, 16);
+                int t_high = Convert.ToInt32(t_dist_high, 16);
+                int t_s_low = Convert.ToInt32(t_strength_low, 16);
+                int t_s_high = Convert.ToInt32(t_strength_high, 16);
+
+                //t_str = "LOW : " + t_low.ToString() + ", HIGH : " + t_high.ToString() + ", S_LOW : " + t_s_low.ToString() + ", S_HIGH : " + t_s_high.ToString();
+                t_str = t_low.ToString();
+            }
+
+            return t_str;
+        }
+
+        private void SetSensorControl(int _dist)
+        {
+            //Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
+            if (_dist > m_sensor_dist)
+            {
+                if (m_sensor_active == true)
+                {
+                    m_sensor_active_cnt = 0;
+                    //0.1초에 한번씩 들어옴
+                    m_sensor_inactive_cnt += 1;
+                    if (m_sensor_inactive_cnt > m_sensor_max)
+                    {
+                        m_sensor_inactive_cnt = 0;
+                        //최신 상태가 센서 감지 일 때
+                        //setCallAppToWeb("SENSOR|OFF");
+                        m_sensor_active = false;
+                    }
+                }
+                //센서 미감지
+                else
+                {
+                    if (m_sensor_is_first == true)
+                    {
+                        m_sensor_is_first = false;
+                        m_sensor_active = false;
+                    }
+                }
+            }
+            else
+            {
+                if (m_sensor_active == false)
+                {
+                    m_sensor_inactive_cnt = 0;
+                    //0.1초에 한번씩 들어옴
+                    m_sensor_active_cnt += 1;
+                    if (m_sensor_active_cnt > m_sensor_max / 2)
+                    {
+                        m_sensor_active_cnt = 0;
+                        //최신 상태가 센서 미감지 일 때
+                        //setCallAppToWeb("SENSOR|ON");
+                        m_sensor_active = true;
+                        //setCallAppToWeb("SENSOR|DIST|" + _dist.ToString());
+                        //센서 감지
+                    }
+                }
+                else
+                {
+                }
+            }
         }
 
 
@@ -512,7 +969,7 @@ namespace UdpPlayer
             {
                 m_webview_main.Visible = true;
                 SetLog("[Webview] set zoom " + (m_webViewZoom / m_display_scale));
-                Thread.Sleep(1500);
+                m_webview_main_loaded = true;
             }
             catch (Exception exception)
             {
@@ -571,6 +1028,24 @@ namespace UdpPlayer
             }
         }
 
+
+        //웹뷰에 값을 전달하기 위한 함수
+        private void setCallAppToWeb(string _str)
+        {
+            m_webview_main.BeginInvoke(new Action(() =>
+            {
+                if (m_webview_main == null || m_webview_main.CoreWebView2 == null)
+                {
+                    if (m_webview_main_loaded == false)
+                    {
+                        //Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>WebView2 초기화 전");
+                        return;
+                    }
+                }
+                SetLog("[AppToWeb] " + _str);
+                m_webview_main.CoreWebView2.PostWebMessageAsString(_str);
+            }));
+        }
         private void GetDisplayScale()
         {
             try
@@ -743,6 +1218,166 @@ namespace UdpPlayer
             catch (Exception exception)
             {
                 SetLog("[Exception] <" + System.Reflection.MethodBase.GetCurrentMethod().Name + "> " + exception);
+            }
+        }
+
+
+        public class HookManager
+        {
+
+            [DllImport("user32.dll")]
+            static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
+
+            [DllImport("user32.dll")]
+            static extern bool UnhookWindowsHookEx(IntPtr hInstance);
+
+            [DllImport("user32.dll")]
+            static extern IntPtr CallNextHookEx(IntPtr idHook, int nCode, int wParam, IntPtr lParam);
+
+            [DllImport("kernel32.dll")]
+            static extern IntPtr LoadLibrary(string lpFileName);
+
+            private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+            const int WH_KEYBOARD_LL = 13;
+            const int WM_KEYDOWN = 0x100;
+            const int WM_KEYUP = 0x0101;
+            const int WM_SYSKEYDOWN = 0x0104;
+            const int WM_SYSKEYUP = 0x0105;
+
+            static bool isShiftPressed = false; // Shift 상태 추적
+            static bool isAltPressed = false;
+
+            private LowLevelKeyboardProc _proc = hookProc;
+
+            private static IntPtr hhook = IntPtr.Zero;
+
+            [DllImport("user32.dll")]
+            private static extern int ToUnicode(
+                uint wVirtKey,
+                uint wScanCode,
+                byte[] lpKeyState,
+                [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff,
+                int cchBuff,
+                uint wFlags);
+
+            [DllImport("user32.dll")]
+            private static extern bool GetKeyboardState(byte[] lpKeyState);
+
+            public void SetHook()
+            {
+                IntPtr hInstance = LoadLibrary("User32");
+                hhook = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, hInstance, 0);
+            }
+
+            public void SetUnHook()
+            {
+                if (hhook != IntPtr.Zero)
+                {
+                    UnhookWindowsHookEx(hhook);
+                    hhook = IntPtr.Zero; // 해제 후 핸들을 초기화
+                }
+
+                UnhookWindowsHookEx(hhook);
+            }
+
+
+            private static void SetPressKeyPad(string _str, string _code)
+            {
+                Console.WriteLine("SetPressKeyPad : " + _str);
+                m_form.setCallAppToWeb("KEYPAD|" + _str);
+            }
+
+            public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
+            {
+                int vkCode0 = Marshal.ReadInt32(lParam);
+                if (code >= 0)
+                {
+                    int vkCode = Marshal.ReadInt32(lParam);
+                    Keys key = (Keys)vkCode;
+
+                    // Shift 키가 눌렸는지 확인
+                    if (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN)
+                    {
+                        // Alt 키가 눌렸는지 확인
+                        if (key == Keys.LMenu || key == Keys.RMenu)
+                        {
+                            // Alt 키의 눌림 상태를 처리
+                            isAltPressed = true; // Alt 눌림 상태로 변경
+                        }
+
+                        //Console.WriteLine(isAltPressed);
+
+                        if (key == Keys.LShiftKey || key == Keys.RShiftKey)
+                        {
+                            isShiftPressed = true; // Shift 눌림 상태로 변경
+                        }
+
+                        // 키 상태 배열을 가져옴 (Shift, Alt, Ctrl 등)
+                        byte[] keyboardState = new byte[256];
+                        GetKeyboardState(keyboardState);
+
+                        // Shift 상태 반영
+                        if (isShiftPressed)
+                        {
+                            keyboardState[(int)Keys.ShiftKey] = 0x80; // Shift 상태 활성화
+                        }
+
+                        // 가상 키 코드를 문자로 변환
+                        uint scanCode = (uint)Marshal.ReadInt32(lParam + 8); // lParam의 8바이트는 스캔 코드
+                        StringBuilder buffer = new StringBuilder(5);
+                        int result = ToUnicode((uint)vkCode, scanCode, keyboardState, buffer, buffer.Capacity, 0);
+
+                        if (result > 0)
+                        {
+                            // 변환된 문자를 출력
+                            //Console.WriteLine($"Key pressed: {buffer.ToString()} {key} {vkCode}");
+                            if (key == Keys.Back || key == Keys.Return)
+                            {
+                                SetPressKeyPad(key.ToString(), vkCode.ToString());
+                                //SetTextBox(key.ToString(), vkCode.ToString());
+                                return (IntPtr)1;
+                            }
+                            else
+                            {
+                                if (m_form.m_hook_check_array.Contains(buffer.ToString()))
+                                {
+                                    SetPressKeyPad(buffer.ToString(), vkCode.ToString());
+                                    //SetTextBox(buffer.ToString(), vkCode.ToString());
+                                    return (IntPtr)1;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Console.WriteLine($"Key pressed (no char): {buffer.ToString()} {key} {vkCode}");
+                            if (m_form.m_hook_check_array.Contains(key.ToString()))
+                            {
+                                SetPressKeyPad(key.ToString(), vkCode.ToString());
+                                //SetTextBox(key.ToString(), vkCode.ToString());
+                                return (IntPtr)1;
+                            }
+                        }
+                    }
+                    else if (wParam == (IntPtr)WM_KEYUP || wParam == (IntPtr)WM_SYSKEYUP)
+                    {
+                        if (key == Keys.LShiftKey || key == Keys.RShiftKey)
+                        {
+                            isShiftPressed = false; // Shift 떼짐 상태로 변경
+                        }
+                        else if (wParam == (IntPtr)WM_KEYUP && (key == Keys.LMenu || key == Keys.RMenu))
+                        {
+                            isAltPressed = false; // Alt 떼짐 상태로 변경
+                        }
+                    }
+
+                    return CallNextHookEx(hhook, code, (int)wParam, lParam);
+                    //return (IntPtr)1; // 키 입력을 차단
+                }
+                else
+                {
+                    return CallNextHookEx(hhook, code, (int)wParam, lParam);
+                }
             }
         }
     }

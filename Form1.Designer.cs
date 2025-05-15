@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.serialPort_control = new System.IO.Ports.SerialPort(this.components);
+            this.serialPort_sensor = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
             // 
             // Form1
@@ -36,7 +39,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "UdpPlayer";
@@ -45,6 +47,9 @@
         }
 
         #endregion
+
+        private System.IO.Ports.SerialPort serialPort_control;
+        private System.IO.Ports.SerialPort serialPort_sensor;
     }
 }
 
