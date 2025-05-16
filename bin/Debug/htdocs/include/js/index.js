@@ -27,6 +27,7 @@ let m_curr_playing = null;
 let m_keypad_mode = "top";
 let m_top_menu_num = 0;
 let m_selected_menu_num = 0;
+let m_reset_state = true;
 
 function setInit() {
 
@@ -92,7 +93,7 @@ function setInit() {
 
     $(".btn_pay").on("touchstart mousedown", function (e) {
         e.preventDefault();
-        onClickBtnPlay(this);
+        onClickBtnPay(this);
     });
 
     $(".btn_cancel").on("touchstart mousedown", function (e) {
@@ -149,7 +150,7 @@ function setMainInterval() {
     time_gap = time_curr - m_time_last;
     time_gap = Math.floor(time_gap / 1000);
     if (time_gap > 180) {
-        if ($(".main_page").css("display") == "none") {
+        if (m_reset_state == false) {
             setMainReset();
         }
     }
@@ -163,6 +164,7 @@ function setMainInterval() {
 
 function setTouched() {
     m_time_last = new Date().getTime();
+    m_reset_state = false;
 }
 
 
@@ -197,6 +199,7 @@ function setInitSetting() {
 }
 
 function setMainReset() {
+    m_reset_state = true;
     m_selected_menu_num = 0;
     m_top_menu_num = 0;
     $('.menuType li').removeClass('btn_outline');
@@ -320,9 +323,11 @@ function onClickBtnVoice(_obj) {
 function setVoiceToggle(_bool) {
     console.log("setVoiceToggle", _bool);
     if (_bool == false) {
+        if ($(".btn_voice").hasClass("active") == true) {
+            //음성 끄기
+            setSoundPlay("voice/voice_common_08.wav");
+        }
         $(".btn_voice").removeClass("active");
-        //음성 끄기
-        setSoundPlay("voice/voice_common_08.wav");
     } else {
         $(".btn_voice").addClass("active");
         //음성 켜기
@@ -338,10 +343,15 @@ function setVoiceToggle(_bool) {
 function onClickItem(_obj) {
     clearAllSoundTimeout();
     if (m_cart_list.length >= 4) {
+        if ($(".btn_voice").hasClass("active") == true) {
+            setSoundPlay("voice/voice_error_01.wav");
+        }
         Swal.fire({
             icon: 'error',
             title: '최대 4개까지만 주문 가능합니다.',
             heightAuto: false,
+            timer: 3000, // 3초 후 자동 닫힘
+            timerProgressBar: true, // 진행바 표시 (선택)
             customClass: {
                 popup: 'alert',
             },
@@ -392,6 +402,8 @@ function onClickItemPlus(_obj) {
         Swal.fire({
             icon: 'error',
             title: '최대 4개까지만 주문 가능합니다.',
+            timer: 3000, // 3초 후 자동 닫힘
+            timerProgressBar: true, // 진행바 표시 (선택)
             heightAuto: false,
             customClass: {
                 popup: 'alert',
@@ -522,6 +534,10 @@ function onClickBtnPrev(_obj) {
         $(".sub_order").hide();
         $(".main_page").show();
         $(".main_order").show();
+
+        if ($(".btn_voice").hasClass("active") == true) {
+            setSoundPlay("voice/voice_common_02.wav");
+        }
     }
 }
 
@@ -532,17 +548,19 @@ function setShowPopup(_num) {
     switch (_num) {
         case "0":
             $(".popupWin1").show();
+                //setSoundPlay("voice/voice_common_05.wav");
+            
             break;
         case "1":
             $(".popupWin2").show();
             m_curr_wait += 1;
             $(".popupWin2 .num").html(m_curr_wait.toString());
             let t_str = "";
-            for (var i = 0; i < m_cart_index_list.length; i += 1) {
-                t_str += m_cart_index_list[i] + "^";
+            for (var i = 0; i < m_cart_list.length; i += 1) {
+                t_str += m_cart_list[i] + "^";
             }
             t_str = t_str.substr(0, t_str.length - 1);
-            setCallWebToApp('UDP_SEND', m_curr_wait + "|" + t_str);
+            setCallWebToApp('UDP_SEND', m_curr_wait + "^" + t_str);
             m_reset_timer = setTimeout(setMainReset, 3500);
             break;
     }
@@ -580,9 +598,12 @@ function setPrevNextBtnState(t_sub, t_max) {
     }
 }
 
-function onClickBtnPlay(_obj) {
+function onClickBtnPay(_obj) {
     clearAllSoundTimeout();
     setShowPopup("0");
+	if ($(".btn_voice").hasClass("active") == true) {
+		setSoundPlay("voice/voice_common_05.wav");
+	}
 }
 
 function onClickBtnCancel(_obj) {
@@ -593,6 +614,9 @@ function onClickBtnCancel(_obj) {
 function onClickConfirmBtn(_obj) {
     clearAllSoundTimeout();
     setShowPopup("1");
+	if ($(".btn_voice").hasClass("active") == true) {
+		setSoundPlay("voice/voice_common_06.wav");
+	}
 }
 
 function onClickFinalConfirmBtn(_obj) {
@@ -695,7 +719,7 @@ function onRecvKeypad(_cmd) {
         if ($(".sub_page").css("display") != "none") {
             if ($(".popup").css("display") == "none") {
                 onClickBtnPrev($(".btn_prev"));
-                setSoundPlay("voice/voice_common_02.wav");
+                //setSoundPlay("voice/voice_common_02.wav");
             } else {
                 onClickBtnCancel($(".btn_cancel"));
                 setItemListCheck();
@@ -706,12 +730,12 @@ function onRecvKeypad(_cmd) {
             setSelectEvent();
         } else if ($(".sub_page").css("display") != "none") {
             if ($(".popup").css("display") == "none") {
-                onClickBtnPlay($(".btn_pay"));
-                setSoundPlay("voice/voice_common_05.wav");
+                onClickBtnPay($(".btn_pay"));
+                //setSoundPlay("voice/voice_common_05.wav");
             } else {
                 if ($(".popupWin1").css("display") != "none") {
                     onClickConfirmBtn($(".popupWin1 .btn_confirm"));
-                    setSoundPlay("voice/voice_common_06.wav");
+                    //setSoundPlay("voice/voice_common_06.wav");
                 } else {
                     onClickFinalConfirmBtn($(".popupWin2 .btn_confirm"));
                 }
@@ -799,10 +823,9 @@ function onClickBtnHome(_obj) {
 function onRecvHwBtn(_cmd) {
     console.log("onRecvHwBtn", _cmd);
     if ($(".btn_voice").hasClass("active") == true) {
-        return;
-    }
-    if (_cmd == "bon") {
-        setVoiceToggle("true");
+        setVoiceToggle(false);
+    }else {
+        setVoiceToggle(true);
     }
 }
 

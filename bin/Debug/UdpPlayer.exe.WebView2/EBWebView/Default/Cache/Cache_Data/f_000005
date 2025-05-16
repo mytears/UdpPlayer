@@ -320,9 +320,11 @@ function onClickBtnVoice(_obj) {
 function setVoiceToggle(_bool) {
     console.log("setVoiceToggle", _bool);
     if (_bool == false) {
+        if ($(".btn_voice").hasClass("active") == true) {
+            //음성 끄기
+            setSoundPlay("voice/voice_common_08.wav");
+        }
         $(".btn_voice").removeClass("active");
-        //음성 끄기
-        setSoundPlay("voice/voice_common_08.wav");
     } else {
         $(".btn_voice").addClass("active");
         //음성 켜기
@@ -537,8 +539,13 @@ function setShowPopup(_num) {
             $(".popupWin2").show();
             m_curr_wait += 1;
             $(".popupWin2 .num").html(m_curr_wait.toString());
-            setCallWebToApp('UDP_SEND', m_curr_wait + "|" + t_str);
-            m_reset_timer = setTimeout(setMainReset, 3000);
+            let t_str = "";
+            for (var i = 0; i < m_cart_index_list.length; i += 1) {
+                t_str += m_cart_index_list[i] + "^";
+            }
+            t_str = t_str.substr(0, t_str.length - 1);
+            setCallWebToApp('UDP_SEND', m_curr_wait + "^" + t_str);
+            m_reset_timer = setTimeout(setMainReset, 3500);
             break;
     }
     $(".popup").show();
@@ -586,12 +593,6 @@ function onClickBtnCancel(_obj) {
 }
 
 function onClickConfirmBtn(_obj) {
-    let t_str = "";
-    for (var i = 0; i < m_cart_index_list.length; i += 1) {
-        t_str += m_cart_index_list[i] + "^";
-    }
-    t_str = t_str.substr(0, t_str.length - 1);
-    
     clearAllSoundTimeout();
     setShowPopup("1");
 }
@@ -656,9 +657,9 @@ function setItemListCheck() {
     }
     console.log(m_cart_index_list.length);
     for (i = 0; i < m_cart_index_list.length; i += 1) {
-        m_sound_timer_list[i] = setTimeout(setSoundPlay, 1200 * i, "voice/voice_cart_menu_0" + (m_cart_index_list[i] + 1) + ".wav");
+        m_sound_timer_list[i] = setTimeout(setSoundPlay, 1300 * i, "voice/voice_cart_menu_0" + (m_cart_index_list[i] + 1) + ".wav");
     }
-    m_sound_timer_list[6] = setTimeout(setSoundPlay, 1200 * (m_cart_index_list.length + 1), "voice/voice_common_04.wav");
+    m_sound_timer_list[6] = setTimeout(setSoundPlay, 1300 * m_cart_index_list.length, "voice/voice_common_04.wav");
 }
 
 function clearAllSoundTimeout() {
@@ -713,7 +714,7 @@ function onRecvKeypad(_cmd) {
                 if ($(".popupWin1").css("display") != "none") {
                     onClickConfirmBtn($(".popupWin1 .btn_confirm"));
                     setSoundPlay("voice/voice_common_06.wav");
-                } else {                    
+                } else {
                     onClickFinalConfirmBtn($(".popupWin2 .btn_confirm"));
                 }
             }
@@ -824,7 +825,7 @@ function setCommand(_str) {
     console.log("setCommand", _str);
     if (cmd == "RECV") {
         //$(".recv_txt").html(arg);
-    }else if (cmd == "KEYPAD") {
+    } else if (cmd == "KEYPAD") {
         onRecvKeypad(arg);
         //$(".recv_txt").html(arg);
     } else if (_str == "BUTTON|ON") {

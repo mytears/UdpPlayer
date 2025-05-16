@@ -405,3 +405,76 @@
 [2025-05-15 17:01:26.926] [WebServer] Kill
 [2025-05-15 17:01:26.933] [UdpPlayer] Stop
 [2025-05-15 17:01:26.933] [------------------------------------------]
+[2025-05-15 18:05:34.853] [------------------------------------------]
+[2025-05-15 18:05:34.860] [UdpPlayer] Start
+[2025-05-15 18:05:34.879] [Setting File] Readed
+[2025-05-15 18:05:35.037] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 18:05:35.041] [Config File] Readed
+[2025-05-15 18:05:35.041] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 18:05:35.052] [WebServer] [Start]
+[2025-05-15 18:05:35.609] [Webview] Add to Control Complete
+[2025-05-15 18:05:35.658] [Display Scale] 1.75
+[2025-05-15 18:05:35.686] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 18:05:35.687] [Control Com Port] COM7 Port is Opened
+[2025-05-15 18:05:36.084] [Webview] WebView2 초기화 완료
+[2025-05-15 18:05:36.190] [Webview] load to http://localhost:8088
+[2025-05-15 18:05:36.706] [Webview] Add Option Complete
+[2025-05-15 18:05:36.707] [WebView] Clear Cache
+[2025-05-15 18:05:36.941] [Webview] set zoom 0.285714285714286
+[2025-05-15 18:06:15.503] [AppToWeb] KEYPAD|Return
+[2025-05-15 19:34:14.027] [------------------------------------------]
+[2025-05-15 19:34:14.029] [UdpPlayer] Start
+[2025-05-15 19:34:14.039] [Setting File] Readed
+[2025-05-15 19:34:14.058] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 19:34:14.060] [Config File] Readed
+[2025-05-15 19:34:14.061] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 19:34:14.064] [WebServer] [Start]
+[2025-05-15 19:34:14.133] [Webview] Add to Control Complete
+[2025-05-15 19:34:14.155] [Display Scale] 1.75
+[2025-05-15 19:34:14.205] [Control Com Port] COM7 Port is Opened
+[2025-05-15 19:34:14.205] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 19:34:14.410] [Webview] WebView2 초기화 완료
+[2025-05-15 19:34:14.524] [Webview] load to http://localhost:8088
+[2025-05-15 19:34:15.035] [Webview] Add Option Complete
+[2025-05-15 19:34:15.035] [WebView] Clear Cache
+[2025-05-15 19:34:15.176] [Webview] set zoom 0.285714285714286
+[2025-05-15 19:34:16.494] [WebServer] Kill
+[2025-05-15 19:34:16.500] [UdpPlayer] Stop
+[2025-05-15 19:34:16.500] [------------------------------------------]
+[2025-05-15 19:34:45.053] [------------------------------------------]
+[2025-05-15 19:34:45.057] [UdpPlayer] Start
+[2025-05-15 19:34:45.070] [Setting File] Readed
+[2025-05-15 19:34:45.093] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 19:34:45.121] [Config File] Readed
+[2025-05-15 19:34:45.121] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 19:34:45.126] [WebServer] [Start]
+[2025-05-15 19:34:45.193] [Webview] Add to Control Complete
+[2025-05-15 19:34:45.207] [Display Scale] 1.75
+[2025-05-15 19:34:45.254] [Control Com Port] COM7 Port is Opened
+[2025-05-15 19:34:45.254] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 19:34:45.454] [Webview] WebView2 초기화 완료
+[2025-05-15 19:34:45.560] [Webview] load to http://localhost:8088
+[2025-05-15 19:34:46.074] [Webview] Add Option Complete
+[2025-05-15 19:34:46.074] [WebView] Clear Cache
+[2025-05-15 19:34:46.294] [WebServer] Kill
+[2025-05-15 19:34:46.304] [UdpPlayer] Stop
+[2025-05-15 19:34:46.304] [------------------------------------------]
+[2025-05-15 19:41:37.034] [------------------------------------------]
+[2025-05-15 19:41:37.036] [UdpPlayer] Start
+[2025-05-15 19:41:37.045] [Setting File] Readed
+[2025-05-15 19:41:37.061] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-05-15 19:41:37.066] [Config File] Readed
+[2025-05-15 19:41:37.066] [WebServer] [Init] SysWebServer.exe
+[2025-05-15 19:41:37.069] [WebServer] [Start]
+[2025-05-15 19:41:37.138] [Webview] Add to Control Complete
+[2025-05-15 19:41:37.158] [Display Scale] 1.75
+[2025-05-15 19:41:37.225] [Control Com Port] COM7 Port is Opened
+[2025-05-15 19:41:37.225] [Sensor Com Port] COM10 Port is Opened
+[2025-05-15 19:41:37.388] [Webview] WebView2 초기화 완료
+[2025-05-15 19:41:37.501] [Webview] load to http://localhost:8088
+[2025-05-15 19:41:38.014] [Webview] Add Option Complete
+[2025-05-15 19:41:38.014] [WebView] Clear Cache
+[2025-05-15 19:41:38.186] [Webview] set zoom 0.285714285714286
+[2025-05-15 19:41:38.462] [WebServer] Kill
+[2025-05-15 19:41:38.466] [UdpPlayer] Stop
+[2025-05-15 19:41:38.466] [------------------------------------------]

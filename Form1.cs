@@ -173,7 +173,7 @@ namespace UdpPlayer
                 m_main_udp_client = new UdpClient();
                 m_main_udp_client.EnableBroadcast = true;
             }
-            else
+            else if (m_udp_mode == "client")
             {
                 m_main_udp_client = new UdpClient(m_udp_port);
 
@@ -194,10 +194,12 @@ namespace UdpPlayer
                     byte[] receiveBytes = m_main_udp_client.Receive(ref remoteEP);
                     string receiveData = Encoding.UTF8.GetString(receiveBytes);
                     Console.WriteLine($"수신: \"{receiveData}\" ← {remoteEP.Address}:{remoteEP.Port}");
+                    setCallAppToWeb("UDP_RECV|"+ receiveData);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"수신 오류: {ex.Message}");
+                    SetCallAppToWeb("UDP_RECV|ERROR^" + ex.Message);
                     break;
                 }
             }
@@ -215,12 +217,13 @@ namespace UdpPlayer
             {
                 m_main_udp_client.Send(sendBytes, sendBytes.Length, broadcastEP);
                 Console.WriteLine($"브로드캐스트 보냄: \"{message}\" → {broadcastEP}");
-                SetCallAppToWeb("RECV|" + message + "^" + broadcastEP);
+                //SetCallAppToWeb("RECV|" + message + "^" + broadcastEP);
+                SetLog("[UDP SEND] " + message);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"오류 발생: {ex.Message}");
-                SetCallAppToWeb("RECV|ERROR^" + broadcastEP);
+                SetCallAppToWeb("UDP_SEND|ERROR^" + ex.Message);
             }
         }
 

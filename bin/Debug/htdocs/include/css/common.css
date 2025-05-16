@@ -52,6 +52,17 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    /* color: #383839; */
+    overflow: hidden;
+    touch-action: none;
+    background-color: transparent;
+    /* background:#ffffff; cursor: none; touch-action:none; overflow:hidden; */
+}
+
 img {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
