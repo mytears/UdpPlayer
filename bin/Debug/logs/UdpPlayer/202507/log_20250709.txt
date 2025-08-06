@@ -1,0 +1,57 @@
+﻿[2025-07-09 08:41:52.298] [------------------------------------------]
+[2025-07-09 08:41:52.307] [UdpPlayer] Start
+[2025-07-09 08:41:52.327] [Setting File] Readed
+[2025-07-09 08:41:52.340] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-07-09 08:41:52.345] [Config File] Readed
+[2025-07-09 08:41:52.345] [WebServer] [Init] SysWebServer.exe
+[2025-07-09 08:41:52.356] [WebServer] [Start]
+[2025-07-09 08:41:52.468] [Webview] Add to Control Complete
+[2025-07-09 08:41:52.489] [Display Scale] 1.5
+[2025-07-09 08:41:52.565] [Control Com Port] COM7 Port is Opened
+[2025-07-09 08:41:52.565] [Sensor Com Port] COM10 Port is Opened
+[2025-07-09 08:41:53.092] [Webview] WebView2 초기화 완료
+[2025-07-09 08:41:53.210] [Webview] load to http://localhost:8088
+[2025-07-09 08:41:53.721] [Webview] Add Option Complete
+[2025-07-09 08:41:53.721] [WebView] Clear Cache
+[2025-07-09 08:41:54.050] [Webview] set zoom 0.333333333333333
+[2025-07-09 08:41:57.646] [WebServer] Kill
+[2025-07-09 08:41:57.667] [UdpPlayer] Stop
+[2025-07-09 08:41:57.667] [------------------------------------------]
+[2025-07-09 08:42:11.566] [------------------------------------------]
+[2025-07-09 08:42:11.584] [UdpPlayer] Start
+[2025-07-09 08:42:11.605] [Setting File] Readed
+[2025-07-09 08:42:11.619] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-07-09 08:42:11.623] [Config File] Readed
+[2025-07-09 08:42:11.624] [WebServer] [Init] SysWebServer.exe
+[2025-07-09 08:42:11.641] [WebServer] [Start]
+[2025-07-09 08:42:11.792] [Webview] Add to Control Complete
+[2025-07-09 08:42:11.838] [Display Scale] 1.5
+[2025-07-09 08:42:11.840] [Control Com Port] COM7 Port is Opened
+[2025-07-09 08:42:11.840] [Sensor Com Port] COM10 Port is Opened
+[2025-07-09 08:42:12.209] [Webview] WebView2 초기화 완료
+[2025-07-09 08:42:12.320] [Webview] load to http://localhost:8088
+[2025-07-09 08:42:12.832] [Webview] Add Option Complete
+[2025-07-09 08:42:12.834] [WebView] Clear Cache
+[2025-07-09 08:42:13.155] [Webview] set zoom 0.333333333333333
+[2025-07-09 08:42:14.300] [WebServer] Kill
+[2025-07-09 08:42:14.331] [UdpPlayer] Stop
+[2025-07-09 08:42:14.331] [------------------------------------------]
+[2025-07-09 08:42:40.425] [------------------------------------------]
+[2025-07-09 08:42:40.437] [UdpPlayer] Start
+[2025-07-09 08:42:40.459] [Setting File] Readed
+[2025-07-09 08:42:40.474] [Exception] <<InitializeControlComport>b__80_0> 'COM7' 포트가 없습니다.
+[2025-07-09 08:42:40.477] [Config File] Readed
+[2025-07-09 08:42:40.477] [WebServer] [Init] SysWebServer.exe
+[2025-07-09 08:42:40.491] [WebServer] [Start]
+[2025-07-09 08:42:40.617] [Webview] Add to Control Complete
+[2025-07-09 08:42:40.660] [Display Scale] 1.5
+[2025-07-09 08:42:40.661] [Sensor Com Port] COM10 Port is Opened
+[2025-07-09 08:42:40.661] [Control Com Port] COM7 Port is Opened
+[2025-07-09 08:42:40.968] [Webview] WebView2 초기화 완료
+[2025-07-09 08:42:41.080] [Webview] load to http://localhost:8088
+[2025-07-09 08:42:41.592] [Webview] Add Option Complete
+[2025-07-09 08:42:41.592] [WebView] Clear Cache
+[2025-07-09 08:42:41.826] [Webview] set zoom 0.333333333333333
+[2025-07-09 08:42:46.568] [WebServer] Kill
+[2025-07-09 08:42:46.587] [UdpPlayer] Stop
+[2025-07-09 08:42:46.587] [------------------------------------------]
